@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/hex"
 
-	"fmt"
+	// "fmt"
 	"github.com/antihax/optional"
 	// "free5gc/lib/CommonConsumerTestData/UDM/TestGenAuthData"
 	"free5gc/lib/UeauCommon"
@@ -18,13 +18,14 @@ import (
 	"math/rand"
 	"net/http"
 	"time"
+	"fmt"
 )
 
 func HandleGenerateAuthData(respChan chan udm_message.HandlerResponseMessage, supiOrSuci string, body models.AuthenticationInfoRequest) {
 	var response models.AuthenticationInfoResult
 	var problemDetails models.ProblemDetails
 	rand.Seed(time.Now().UnixNano())
-        fmt.Printf("HandleGenerateAuthData\n")
+
 	supi, suciToSupiErr := suci.ToSupi(supiOrSuci)
 	if suciToSupiErr != nil {
 		logger.UeauLog.Errorln("suciToSupi error: ", suciToSupiErr.Error())
@@ -34,7 +35,10 @@ func HandleGenerateAuthData(respChan chan udm_message.HandlerResponseMessage, su
 	}
 	logger.UeauLog.Infof("supi conversion => %s\n", supi)
 
+	fmt.Printf("supi is %s\n",supi)
+
 	client := createUDMClientToUDR(supi, false)
+	//fmt.Printf("client is %s\n",client)
 	authSubs, _, err := client.AuthenticationDataDocumentApi.QueryAuthSubsData(context.Background(), supi, nil)
 	if err != nil {
 		logger.UeauLog.Errorln("Return from UDR QueryAuthSubsData error")
@@ -224,6 +228,8 @@ func HandleConfirmAuthData(respChan chan udm_message.HandlerResponseMessage, sup
 	var createAuthParam Nudr_DataRepository.CreateAuthenticationStatusParamOpts
 	optInterface := optional.NewInterface(body)
 	createAuthParam.AuthEvent = optInterface
+
+	fmt.Printf("supi is %s\n",supi)
 
 	client := createUDMClientToUDR(supi, false)
 	resp, err := client.AuthenticationStatusDocumentApi.CreateAuthenticationStatus(context.Background(), supi, &createAuthParam)

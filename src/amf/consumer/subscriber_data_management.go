@@ -6,6 +6,7 @@ import (
 	"free5gc/lib/openapi/Nudm_SubscriberDataManagement"
 	"free5gc/lib/openapi/models"
 	amf_context "free5gc/src/amf/context"
+	"fmt"
 
 	"github.com/antihax/optional"
 )
@@ -29,6 +30,8 @@ func PutUpuAck(ue *amf_context.AmfUe, upuMacIue string) error {
 func SDMGetAmData(ue *amf_context.AmfUe) (problemDetails *models.ProblemDetails, err error) {
 
 	configuration := Nudm_SubscriberDataManagement.NewConfiguration()
+	ue.NudmSDMUri = "http://192.168.2.76:29503"
+	fmt.Printf("ue.NudmSDMUri is %s\n",ue.NudmSDMUri)
 	configuration.SetBasePath(ue.NudmSDMUri)
 	client := Nudm_SubscriberDataManagement.NewAPIClient(configuration)
 
@@ -132,6 +135,8 @@ func SDMSubscribe(ue *amf_context.AmfUe) (problemDetails *models.ProblemDetails,
 
 func SDMGetSliceSelectionSubscriptionData(ue *amf_context.AmfUe) (problemDetails *models.ProblemDetails, err error) {
 	configuration := Nudm_SubscriberDataManagement.NewConfiguration()
+	ue.NudmSDMUri = "http://192.168.2.76:29503"
+	fmt.Printf("ue.NudmSDMUri is %s\n",ue.NudmSDMUri)
 	configuration.SetBasePath(ue.NudmSDMUri)
 	client := Nudm_SubscriberDataManagement.NewAPIClient(configuration)
 

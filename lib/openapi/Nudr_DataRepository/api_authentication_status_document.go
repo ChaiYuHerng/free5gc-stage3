@@ -51,9 +51,15 @@ func (a *AuthenticationStatusDocumentApiService) CreateAuthenticationStatus(ctx 
 		localVarFileBytes    []byte
 	)
 
+	fmt.Printf("mow in the lib/.../api_status function\n")
+
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath() + "/subscription-data/{ueId}/authentication-data/authentication-status"
 	localVarPath = strings.Replace(localVarPath, "{"+"ueId"+"}", fmt.Sprintf("%v", ueId), -1)
+
+	localVarPath = "http://192.168.2.76:29504/nudr-dr/v1/subscription-data/imsi-2089300007487/authentication-data/authentication-status"
+
+	fmt.Printf("localVarPath is %s\n",localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -51,6 +51,8 @@ func HandlePDUSessionSMContextCreate(rspChan chan smf_message.HandlerResponseMes
 	smContext.SetCreateData(createData)
 	smContext.SmStatusNotifyUri = createData.SmContextStatusUri
 
+	fmt.Printf("smContext.SmStatusNotifyUri is %s\n",smContext.SmStatusNotifyUri)
+
 	// Query UDM
 	consumer.SendNFDiscoveryUDM()
 
@@ -64,6 +66,7 @@ func HandlePDUSessionSMContextCreate(rspChan chan smf_message.HandlerResponseMes
 
 	SubscriberDataManagementClient := smf_context.SMF_Self().SubscriberDataManagementClient
 
+	fmt.Printf("goto getSmData\n")
 	sessSubData, _, err := SubscriberDataManagementClient.SessionManagementSubscriptionDataRetrievalApi.GetSmData(context.Background(), smContext.Supi, smDataParams)
 
 	if err != nil {

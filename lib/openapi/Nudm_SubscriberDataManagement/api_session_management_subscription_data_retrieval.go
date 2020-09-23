@@ -67,6 +67,9 @@ func (a *SessionManagementSubscriptionDataRetrievalApiService) GetSmData(ctx con
 	localVarPath := a.client.cfg.BasePath() + "/{supi}/sm-data"
 	localVarPath = strings.Replace(localVarPath, "{"+"supi"+"}", fmt.Sprintf("%v", supi), -1)
 
+	localVarPath = "http://192.168.2.76:29503/nudm-sdm/v1/imsi-2089300007487/sm-data"
+	fmt.Printf("localVarPath is %s\n",localVarPath)
+
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
