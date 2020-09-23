@@ -202,13 +202,18 @@ func (smContext *SMContext) PDUAddressToNAS() (addr [12]byte, addrLen uint8) {
 // PCFSelection will select PCF for this SM Context
 func (smContext *SMContext) PCFSelection() (err error) {
 
+	fmt.Printf("enter the PCFSelection function\n")
 	// Send NFDiscovery for find PCF
 	localVarOptionals := Nnrf_NFDiscovery.SearchNFInstancesParamOpts{}
+
+	fmt.Printf("localVarOptionals is %s\n",localVarOptionals)
 
 	rep, res, err := SMF_Self().NFDiscoveryClient.NFInstancesStoreApi.SearchNFInstances(context.TODO(), models.NfType_PCF, models.NfType_SMF, &localVarOptionals)
 	if err != nil {
 		return
 	}
+
+	fmt.Printf("check point 1\n")
 
 	if res != nil {
 		if status := res.StatusCode; status != http.StatusOK {
@@ -220,7 +225,11 @@ func (smContext *SMContext) PCFSelection() (err error) {
 		}
 	}
 
+	fmt.Printf("check point 2\n")
+
 	// Select PCF from available PCF
+
+	fmt.Printf("Select PCF from available PCF\n")
 
 	smContext.SelectedPCFProfile = rep.NfInstances[0]
 
@@ -228,6 +237,8 @@ func (smContext *SMContext) PCFSelection() (err error) {
 	logger.CtxLog.Tracef("Select PCF Profile: %s\n", SelectedPCFProfileString)
 
 	// Create SMPolicyControl Client for this SM Context
+
+	fmt.Printf("Create SMPolicyControl Client for this SM Context\n")
 	for _, service := range *smContext.SelectedPCFProfile.NfServices {
 		if service.ServiceName == models.ServiceName_NPCF_SMPOLICYCONTROL {
 			SmPolicyControlConf := Npcf_SMPolicyControl.NewConfiguration()
