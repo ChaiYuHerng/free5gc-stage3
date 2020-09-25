@@ -1,0 +1,96 @@
+tosca_definitions_version: tosca_simple_profile_for_nfv_1_0_0
+description: description
+node_types:
+  tosca.nodes.nfv.VNF6:
+    requirements:
+    - virtualLink1:
+        type: tosca.nodes.nfv.VL
+        required: true
+metadata:
+  template_name: free5GCSetup
+topology_template:
+  substitution_mappings:
+    node_type: tosca.nodes.nfv.VNF6
+  node_templates:
+    VDU1:
+      type: tosca.nodes.nfv.VDU.Tacker
+      properties:
+        name: free5gc-udm-VNF
+        image: free5gc-cp
+        flavor: free5gc
+        availability_zone: nova
+        mgmt_driver: noop
+        key_name: free5gc
+        user_data_format: RAW
+        user_data: |
+          #!/bin/sh
+          cd /home/ubuntu/
+          echo "export GOPATH for bash shell"
+          export HOME=/home/ubuntu
+          export GOPATH=$HOME/go
+          export GOROOT=/usr/local/go
+          export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
+          export GO111MODULE=off
+          
+          cd $GOPATH/src/free5gc
+          echo "configure UDM"
+          cat > /home/ubuntu/go/src/free5gc/config/udmcfg.conf <<- EOM
+          info:
+            version: 1.0.0
+            description: UDM initial local configuration
+          
+          configuration:
+            serviceNameList:
+              - nudm-sdm
+              - nudm-uecm
+              - nudm-ueau
+              - nudm-ee
+              - nudm-pp
+            sbi:
+              scheme: https
+              ipv4Addr: 192.168.2.106
+              port: 29503
+              tls:
+                log: free5gc/udmsslkey.log
+                pem: free5gc/support/TLS/udm.pem
+                key: free5gc/support/TLS/udm.key
+          
+            udrclient:
+              scheme: https
+              ipv4Addr: 192.168.2.104
+              port: 29504
+          
+            nrfclient:
+              scheme: https
+              ipv4Addr: 192.168.2.101
+              port: 29510
+          EOM
+          
+          echo "initialize UDM"
+          go build -o bin/udm -x src/udm/udm.go
+          
+          echo "run UDM"
+          sudo ./bin/udm
+    CP1:
+      type: tosca.nodes.nfv.CP.Tacker
+      properties:
+        ip_address: 192.168.2.106
+        management: true
+      requirements:
+      - virtualLink:
+          node: VL1
+      - virtualBinding:
+          node: VDU1
+    VL1:
+      type: tosca.nodes.nfv.VL
+      properties:
+        network_name: 5GC
+        vendor: Tacker
+    FIP1:
+      type: tosca.nodes.network.FloatingIP
+      properties:
+        floating_network: public
+        floating_ip_address: 172.24.4.106
+      requirements:
+      - link:
+          node: CP1
