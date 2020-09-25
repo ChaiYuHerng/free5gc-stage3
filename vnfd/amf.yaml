@@ -43,7 +43,7 @@ topology_template:
             ngapIpList:
               - 192.168.2.102
             sbi:
-              scheme: https
+              scheme: http
               ipv4Addr: 192.168.2.102
               port: 29518
             serviceNameList:
@@ -51,6 +51,7 @@ topology_template:
               - namf-evts
               - namf-mt
               - namf-loc
+              - namf-oam
             servedGuamiList:
               - plmnId:
                   mcc: 208
