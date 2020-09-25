@@ -13,7 +13,7 @@ func UeCmRegistration(ue *amf_context.AmfUe, accessType models.AccessType, initi
 
 	configuration := Nudm_UEContextManagement.NewConfiguration()
 	fmt.Printf("before ue.NudmUECMUri is %s\n",ue.NudmUECMUri)
-	ue.NudmUECMUri = "http://192.168.2.76:29503"
+	ue.NudmUECMUri = "http://192.168.2.106:29503"
 	fmt.Printf("after ue.NudmUECMUri is %s\n",ue.NudmUECMUri)
 	configuration.SetBasePath(ue.NudmUECMUri)
 	client := Nudm_UEContextManagement.NewAPIClient(configuration)

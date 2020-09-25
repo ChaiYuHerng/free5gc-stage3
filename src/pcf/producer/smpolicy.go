@@ -30,7 +30,7 @@ func CreateSmPolicy(httpChannel chan message.HttpResponseMessage, request models
 		message.SendHttpResponseMessage(httpChannel, nil, int(rsp.Status), rsp)
 	}
 	//udrUri := getUdrUri(ue)
-	udrUri := "http://192.168.2.76:29504"
+	udrUri := "http://192.168.2.104:29504"
 	fmt.Printf("test ~~~ udrUri is %s\n",udrUri)
 	if udrUri == "" {
 		rsp := util.GetProblemDetail("Can't find corresponding UDR with UE", util.USER_UNKNOWN)

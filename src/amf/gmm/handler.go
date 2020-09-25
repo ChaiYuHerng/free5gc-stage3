@@ -169,7 +169,7 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 
 		//smfID, smfUri, err := selectSmf(ue, anType, &pduSession, payload)
 		var smfID string
-		var smfUri = "http://192.168.2.76:29502"
+		var smfUri = "http://192.168.2.103:29502"
 		/*if err != nil {
 			logger.GmmLog.Errorf("[AMF] SMF Selection for Snssai[%+v] Failed[%+v]", sNssai, err)
 			return err

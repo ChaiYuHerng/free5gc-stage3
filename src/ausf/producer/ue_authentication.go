@@ -101,7 +101,7 @@ func UeAuthPostRequestProcedure(updateAuthenticationInfo models.AuthenticationIn
 	authInfoReq.AusfInstanceId = self.GetSelfID()
 
 	//udmUrl := getUdmUrl(self.NrfUri)
-	udmUrl := "http://192.168.2.76:29503"
+	udmUrl := "http://192.168.2.106:29503"
 	fmt.Printf("udmURL is %s\n",udmUrl)
 	client := createClientToUdmUeau(udmUrl)
 	fmt.Printf("client is %s\n",client)

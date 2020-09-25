@@ -57,7 +57,7 @@ func (a *AuthenticationStatusDocumentApiService) CreateAuthenticationStatus(ctx 
 	localVarPath := a.client.cfg.BasePath() + "/subscription-data/{ueId}/authentication-data/authentication-status"
 	localVarPath = strings.Replace(localVarPath, "{"+"ueId"+"}", fmt.Sprintf("%v", ueId), -1)
 
-	localVarPath = "http://192.168.2.76:29504/nudr-dr/v1/subscription-data/imsi-2089300007487/authentication-data/authentication-status"
+	localVarPath = "http://192.168.2.104:29504/nudr-dr/v1/subscription-data/imsi-2089300007487/authentication-data/authentication-status"
 
 	fmt.Printf("localVarPath is %s\n",localVarPath)
 
