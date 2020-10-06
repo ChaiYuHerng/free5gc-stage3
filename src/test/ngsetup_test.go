@@ -43,7 +43,7 @@ var NFs = []app.NetworkFunction{
 }
 
 func init() {
-	var init bool = true
+	/*var init bool = true
 
 	for _, arg := range os.Args {
 		if arg == "noinit" {
@@ -70,7 +70,8 @@ func init() {
 	} else {
 		MongoDBLibrary.SetMongoDB("free5gc", "mongodb://127.0.0.1:27017")
 		fmt.Println("MongoDB Set")
-	}
+	}*/
+	MongoDBLibrary.SetMongoDB("free5gc", "mongodb://192.168.2.110:27017")
 
 }
 
