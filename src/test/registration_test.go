@@ -35,7 +35,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-const ranIpAddr string = "10.200.200.1"
+const ranIpAddr string = "192.168.2.69"
 
 func ipv4HeaderChecksum(hdr *ipv4.Header) uint32 {
 	var Checksum uint32
@@ -100,11 +100,11 @@ func TestRegistration(t *testing.T) {
 	var recvMsg = make([]byte, 2048)
 
 	// RAN connect to AMF
-	conn, err := conntectToAmf("127.0.0.1", "127.0.0.1", 38412, 9487)
+	conn, err := conntectToAmf("192.168.2.102", "192.168.2.69", 38412, 9487)
 	assert.Nil(t, err)
 
 	// RAN connect to UPF
-	upfConn, err := connectToUpf(ranIpAddr, "10.200.200.102", 2152, 2152)
+	upfConn, err := connectToUpf(ranIpAddr, "192.168.2.143", 2152, 2152)
 	assert.Nil(t, err)
 
 	// send NGSetupRequest Msg
