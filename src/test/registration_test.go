@@ -45,11 +45,11 @@ var udpInterval time.Duration = 100 * time.Nanosecond
 var udpPacketCount int =        15000
 var totalUdpPacket int = 120000000000
 
-const ranIpAddr string = "192.168.2.69"
+const ranIpAddr string = "192.168.2.35"
 const amfIpAddr string = "192.168.2.102" // no need to change
 const upfIpAddr string = "192.168.2.143" // 110, 111
-const dNServer  string = "192.168.2.49" // 205, 206
-var dNServerI = [4]byte{192, 168, 2, 49} // 205, 206
+const dNServer  string = "192.168.2.26" // 205, 206
+var dNServerI = [4]byte{192, 168, 2, 26} // 205, 206
 
 func BuildGTPHeader(teid uint32, seq uint16) ([]byte, error) {
     var ml uint16 = 52
@@ -160,7 +160,7 @@ func TestRegistration(t *testing.T) {
 	var recvMsg = make([]byte, 2048)
 
 	// RAN connect to AMF
-	conn, err := conntectToAmf(amfIpAddr, "192.168.2.69", 38412, 9487)
+	conn, err := conntectToAmf(amfIpAddr, "192.168.2.35", 38412, 9487)
 	assert.Nil(t, err)
         fmt.Printf("RAN connect to AMF\n")
 	// RAN connect to UPF
@@ -425,9 +425,9 @@ func TestTransfer(t *testing.T) {
     wg.Add(1)
     go gtpPacketListener(upfConn, logger)
     wg.Add(1)
-    go icmpTrafficGenerator(1, "192.168.2.65", upfConn, logger)
-    //wg.Add(1)
-    //go udpTrafficGenerator(1, "192.168.2.65", upfConn, logger)
+    go icmpTrafficGenerator(1, "192.168.2.35", upfConn, logger)
+    wg.Add(1)
+    go udpTrafficGenerator(1, "192.168.2.35", upfConn, logger)
     //}
 
     wg.Wait()
