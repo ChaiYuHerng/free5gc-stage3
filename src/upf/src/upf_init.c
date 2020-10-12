@@ -279,6 +279,7 @@ void PacketReceiverThread(ThreadID id, void *data) {
             sockPtr = events[i].data.ptr;
             status = sockPtr->handler(sockPtr, sockPtr->data);
             // TODO : Log may show which socket
+            fmt.Printf("status is %s\n",status)
             UTLT_Assert(status == STATUS_OK, , "Error handling UP socket");
         }
 

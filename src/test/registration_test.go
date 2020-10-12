@@ -472,7 +472,7 @@ func gtpPacketListener(conn *net.UDPConn, logger *log.Logger) {
 		fmt.Printf("now in the gtpPacketListener for loop\n")
         len, _, err := conn.ReadFrom(recv)
 		errLog(err, logger)
-		fmt.Printf("len is %s\n",len)
+		fmt.Printf("len is %d\n",len)
         if len != 0 {
 			fmt.Printf("check1\n")
             recvTime := time.Now().UnixNano()
@@ -483,7 +483,7 @@ func gtpPacketListener(conn *net.UDPConn, logger *log.Logger) {
 
             respTime := float64(recvTime-sendTime) / 1000000
 			count++
-			fmt.Printf("count is %s\n",count)
+			fmt.Printf("count is %d\n",count)
             //total_time += respTime
             if respTime > 0 && count > 15 {
 				fmt.Printf("check2\n")
