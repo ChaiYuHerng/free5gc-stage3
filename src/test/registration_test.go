@@ -416,21 +416,30 @@ func TestTransfer(t *testing.T) {
     // wait 1s
     time.Sleep(1 * time.Second)
 
-    logger := log.New(os.Stdout, "", 0)
+	fmt.Printf("print logger\n")
+	logger := log.New(os.Stdout, "", 0)
     //recv := make(chan time.Time, 1)
     //defer close(recv)
 
     //for _, ueData := range ues {
         //go gtpPacketListener(upfConn, logger)
-    wg.Add(1)
-    go gtpPacketListener(upfConn, logger)
-    wg.Add(1)
-    go icmpTrafficGenerator(1, "192.168.2.35", upfConn, logger)
-    wg.Add(1)
-    go udpTrafficGenerator(1, "192.168.2.35", upfConn, logger)
+	wg.Add(1)
+	fmt.Printf("start gtpPacketListener")
+	go gtpPacketListener(upfConn, logger)
+	fmt.Printf("end gtpPacketListener")
+	wg.Add(1)
+	fmt.Printf("start icmpTrafficGenerator")
+	go icmpTrafficGenerator(1, "60.60.0.2", upfConn, logger)
+	fmt.Printf("end icmpTrafficGenerator")
+	wg.Add(1)
+	fmt.Printf("start udpTrafficGenerator")
+	go udpTrafficGenerator(1, "60.60.0.2", upfConn, logger)
+	fmt.Printf("end udpTrafficGenerator")
     //}
 
-    wg.Wait()
+	fmt.Printf("start wait\n")
+	wg.Wait()
+	fmt.Printf("end wait\n")
     logger.Println("Transmission Finished")
 
 }
