@@ -429,12 +429,12 @@ func TestTransfer(t *testing.T) {
 	fmt.Printf("end gtpPacketListener\n")
 	wg.Add(1)
 	fmt.Printf("start icmpTrafficGenerator\n")
-	go icmpTrafficGenerator(1, "60.60.0.2", upfConn, logger)
+	go icmpTrafficGenerator(1, "60.60.0.1", upfConn, logger)
 	fmt.Printf("end icmpTrafficGenerator\n")
-	wg.Add(1)
+	/*wg.Add(1)
 	fmt.Printf("start udpTrafficGenerator\n")
-	go udpTrafficGenerator(1, "60.60.0.2", upfConn, logger)
-	fmt.Printf("end udpTrafficGenerator\n")
+	go udpTrafficGenerator(1, "60.60.0.1", upfConn, logger)
+	fmt.Printf("end udpTrafficGenerator\n")*/
     //}
 
 	fmt.Printf("start wait\n")
@@ -467,11 +467,12 @@ func gtpPacketListener(conn *net.UDPConn, logger *log.Logger) {
     recv := make([]byte, 1024)
     var total_time float64 = 0
 	count := 0
-	fmt.Printf("try to go in to for loop\n")
+	fmt.Printf("try to go in to gtpPacketListener for loop\n")
     for {
-		fmt.Printf("now in the for loop\n")
+		fmt.Printf("now in the gtpPacketListener for loop\n")
         len, _, err := conn.ReadFrom(recv)
-        errLog(err, logger)
+		errLog(err, logger)
+		fmt.Printf("len is %s\n",len)
         if len != 0 {
 			fmt.Printf("check1\n")
             recvTime := time.Now().UnixNano()
@@ -485,7 +486,7 @@ func gtpPacketListener(conn *net.UDPConn, logger *log.Logger) {
 			fmt.Printf("count is %s\n",count)
             //total_time += respTime
             if respTime > 0 && count > 15 {
-				fmr.Printf("check2\n")
+				fmt.Printf("check2\n")
 				total_time += respTime
                 logger.Printf("%d  time=%.2f ms, avg=%.2f", count, respTime, total_time/float64(count-15))
             }
@@ -503,7 +504,7 @@ func icmpTrafficGenerator(teid uint32, ip string, conn *net.UDPConn, logger *log
     //data := make([]byte, 1024)
 
     //icmp_start_t := time.Now()
-    for i := 0; i < 4000; i++ {
+    for i := 0; i < 100; i++ {
         // Create GTP header
         gtpHdr, err := BuildGTPHeader(teid, uint16(i))
 	//gtpHdr, err := hex.DecodeString("32ff00340000000100000000")
