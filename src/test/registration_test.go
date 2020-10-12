@@ -424,17 +424,17 @@ func TestTransfer(t *testing.T) {
     //for _, ueData := range ues {
         //go gtpPacketListener(upfConn, logger)
 	wg.Add(1)
-	fmt.Printf("start gtpPacketListener")
+	fmt.Printf("start gtpPacketListener\n")
 	go gtpPacketListener(upfConn, logger)
-	fmt.Printf("end gtpPacketListener")
+	fmt.Printf("end gtpPacketListener\n")
 	wg.Add(1)
-	fmt.Printf("start icmpTrafficGenerator")
+	fmt.Printf("start icmpTrafficGenerator\n")
 	go icmpTrafficGenerator(1, "60.60.0.2", upfConn, logger)
-	fmt.Printf("end icmpTrafficGenerator")
+	fmt.Printf("end icmpTrafficGenerator\n")
 	wg.Add(1)
-	fmt.Printf("start udpTrafficGenerator")
+	fmt.Printf("start udpTrafficGenerator\n")
 	go udpTrafficGenerator(1, "60.60.0.2", upfConn, logger)
-	fmt.Printf("end udpTrafficGenerator")
+	fmt.Printf("end udpTrafficGenerator\n")
     //}
 
 	fmt.Printf("start wait\n")
@@ -462,14 +462,18 @@ func recvICMP(conn *net.UDPConn, recv chan<- time.Time, logger *log.Logger) {
 }
 
 func gtpPacketListener(conn *net.UDPConn, logger *log.Logger) {
-    defer wg.Done()
+	fmt.Printf("now in the gtpPacketListener function\n")
+	defer wg.Done()
     recv := make([]byte, 1024)
     var total_time float64 = 0
-    count := 0
+	count := 0
+	fmt.Printf("try to go in to for loop\n")
     for {
+		fmt.Printf("now in the for loop\n")
         len, _, err := conn.ReadFrom(recv)
         errLog(err, logger)
         if len != 0 {
+			fmt.Printf("check1\n")
             recvTime := time.Now().UnixNano()
 
             // icmpData
@@ -477,10 +481,12 @@ func gtpPacketListener(conn *net.UDPConn, logger *log.Logger) {
             sendTime := BytesToInt64(icmpData)
 
             respTime := float64(recvTime-sendTime) / 1000000
-            count++
+			count++
+			fmt.Printf("count is %s\n",count)
             //total_time += respTime
             if respTime > 0 && count > 15 {
-                total_time += respTime
+				fmr.Printf("check2\n")
+				total_time += respTime
                 logger.Printf("%d  time=%.2f ms, avg=%.2f", count, respTime, total_time/float64(count-15))
             }
 
@@ -497,7 +503,7 @@ func icmpTrafficGenerator(teid uint32, ip string, conn *net.UDPConn, logger *log
     //data := make([]byte, 1024)
 
     //icmp_start_t := time.Now()
-    for i := 0; i < 4; i++ {
+    for i := 0; i < 4000; i++ {
         // Create GTP header
         gtpHdr, err := BuildGTPHeader(teid, uint16(i))
 	//gtpHdr, err := hex.DecodeString("32ff00340000000100000000")
