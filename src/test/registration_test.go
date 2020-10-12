@@ -160,7 +160,7 @@ func TestRegistration(t *testing.T) {
 	var recvMsg = make([]byte, 2048)
 
 	// RAN connect to AMF
-	conn, err := conntectToAmf(amfIpAddr, "192.168.2.35", 38412, 9487)
+	conn, err := conntectToAmf(amfIpAddr, ranIpAddr, 38412, 9487)
 	assert.Nil(t, err)
         fmt.Printf("RAN connect to AMF\n")
 	// RAN connect to UPF
@@ -431,15 +431,13 @@ func TestTransfer(t *testing.T) {
 	fmt.Printf("start icmpTrafficGenerator\n")
 	go icmpTrafficGenerator(1, "60.60.0.1", upfConn, logger)
 	fmt.Printf("end icmpTrafficGenerator\n")
-	/*wg.Add(1)
+	wg.Add(1)
 	fmt.Printf("start udpTrafficGenerator\n")
 	go udpTrafficGenerator(1, "60.60.0.1", upfConn, logger)
-	fmt.Printf("end udpTrafficGenerator\n")*/
+	fmt.Printf("end udpTrafficGenerator\n")
     //}
 
-	fmt.Printf("start wait\n")
 	wg.Wait()
-	fmt.Printf("end wait\n")
     logger.Println("Transmission Finished")
 
 }
