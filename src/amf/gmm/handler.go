@@ -21,7 +21,7 @@ import (
 	ngap_message "free5gc/src/amf/ngap/message"
 	"free5gc/src/amf/producer/callback"
 	"free5gc/src/amf/util"
-	//"net/url"
+	"net/url"
 	"reflect"
 	"strconv"
 	"strings"
@@ -169,8 +169,7 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 
 		//smfID, smfUri, err := selectSmf(ue, anType, &pduSession, payload)
 		var smfID string
-		smfUri := "http://192.168.2.103:29502"
-		fmt.Printf("smfID: %s , smfUri:%s\n",smfID,smfUri)
+		var smfUri = "http://192.168.2.103:29502"
 		/*if err != nil {
 			logger.GmmLog.Errorf("[AMF] SMF Selection for Snssai[%+v] Failed[%+v]", sNssai, err)
 			return err
@@ -292,15 +291,14 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 
 func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.PduSessionContext, payload []byte) (smfID string, smfUri string, err error) {
 
-	//amfSelf := context.AMF_Self()
-	//nrfUri := amfSelf.NrfUri // default NRF URI is pre-configured by AMF
-        nrfUri := "http://192.168.2.238:29510"
+	amfSelf := context.AMF_Self()
+	nrfUri := amfSelf.NrfUri // default NRF URI is pre-configured by AMF
+
 	nsiInformation := ue.GetNsiInformationFromSnssai(anType, *pduSession.SNssai)
 	if nsiInformation == nil {
-		/*if ue.NssfUri == "" {
-
+		if ue.NssfUri == "" {
 			for {
-				err := consumer.SearchNssfNSSelectionInstance(ue, nrfUri, models.NfType_NSSF, models.NfType_AMF, nil)
+				err := consumer.SearchNssfNSSelectionInstance(ue, amfSelf.NrfUri, models.NfType_NSSF, models.NfType_AMF, nil)
 				if err != nil {
 					logger.GmmLog.Errorf("AMF can not select an NSSF Instance by NRF[Error: %+v]", err)
 					time.Sleep(2 * time.Second)
@@ -308,9 +306,8 @@ func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.P
 					break
 				}
 			}
-		}*/
-		ue.NssfUri = "http://192.168.2.238:29531"
-                fmt.Printf("ue NssfUri: %s\n",ue.NssfUri)
+		}
+
 		res, problemDetails, err := consumer.NSSelectionGetForPduSession(ue, *pduSession.SNssai)
 		if problemDetails != nil {
 			logger.GmmLog.Errorf("NSSelection Get Failed Problem[%+v]", problemDetails)
@@ -321,14 +318,14 @@ func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.P
 		}
 	}
 
-	/*pduSession.NsInstance = nsiInformation.NsiId
+	pduSession.NsInstance = nsiInformation.NsiId
 	nrfApiUrl, err := url.Parse(nsiInformation.NrfId)
 	if err != nil {
 		logger.GmmLog.Errorf("Parse NRF URI error, use default NRF[%s]", nrfUri)
 	} else {
 		nrfUri = fmt.Sprintf("%s://%s", nrfApiUrl.Scheme, nrfApiUrl.Host)
-	}*/
-        //nrfUri := "http://192.168.2.238:29510"
+	}
+
 	param := Nnrf_NFDiscovery.SearchNFInstancesParamOpts{
 		ServiceNames: optional.NewInterface([]models.ServiceName{models.ServiceName_NSMF_PDUSESSION}),
 		Dnn:          optional.NewString(pduSession.Dnn),
@@ -339,7 +336,7 @@ func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.P
 	}
 
 	logger.GmmLog.Debugf("Search SMF from NRF[%s]", nrfUri)
-        
+
 	result, err := consumer.SendSearchNFInstances(nrfUri, models.NfType_SMF, models.NfType_AMF, &param)
 
 	if err != nil || len(result.NfInstances) == 0 {
@@ -1328,11 +1325,14 @@ func HandleMobilityAndPeriodicRegistrationUpdating(ue *context.AmfUe, anType mod
 
 func getSubscribedNssai(ue *context.AmfUe) {
 
+	fmt.Printf("enter the getSubdcribedNssai function\n")
 	amfSelf := context.AMF_Self()
+	//fmt.Printf("amfself is %s\n",amfSelf)
 	if ue.NudmSDMUri == "" {
 		param := Nnrf_NFDiscovery.SearchNFInstancesParamOpts{
 			Supi: optional.NewString(ue.Supi),
 		}
+		fmt.Printf("ue.Supi is %s\n",ue.Supi)
 		for {
 			err := consumer.SearchUdmSdmInstance(ue, amfSelf.NrfUri, models.NfType_UDM, models.NfType_AMF, &param)
 			if err != nil {

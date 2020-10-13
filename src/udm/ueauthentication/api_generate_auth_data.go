@@ -16,11 +16,12 @@ import (
 	"free5gc/src/udm/handler"
 	udm_message "free5gc/src/udm/handler/message"
 	"github.com/gin-gonic/gin"
-	// "fmt"
+	"fmt"
 )
 
 // GenerateAuthData - Generate authentication data for the UE
 func GenerateAuthData(c *gin.Context) {
+	fmt.Printf("this is udm's GenerateAuthData\n")
 	var authInfoReq models.AuthenticationInfoRequest
 	err := c.ShouldBindJSON(&authInfoReq)
 	if err != nil {

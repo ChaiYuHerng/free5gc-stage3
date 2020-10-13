@@ -101,28 +101,28 @@ func UeAuthPostRequestProcedure(updateAuthenticationInfo models.AuthenticationIn
 	authInfoReq.AusfInstanceId = self.GetSelfID()
 
 	//udmUrl := getUdmUrl(self.NrfUri)
-
-	udmUrl :="http://192.168.2.106:29503"
-
-
-	fmt.Printf("UDM url: %s\n",udmUrl)
+	udmUrl := "http://192.168.2.106:29503"
+	fmt.Printf("udmURL is %s\n",udmUrl)
 	client := createClientToUdmUeau(udmUrl)
+	fmt.Printf("client is %s\n",client)
 	authInfoResult, _, err := client.GenerateAuthDataApi.GenerateAuthData(context.Background(), supiOrSuci, authInfoReq)
 	if err != nil {
-		fmt.Printf("Have Error\n")
+		fmt.Printf("there are some error\n")
 		logger.UeAuthPostLog.Infoln(err.Error())
 		var problemDetails models.ProblemDetails
 		if authInfoResult.AuthenticationVector == nil {
 			problemDetails.Cause = "AV_GENERATION_PROBLEM"
-		        fmt.Printf("Error 1\n")
+			fmt.Printf("error1\n")
 		} else {
 			problemDetails.Cause = "UPSTREAM_SERVER_ERROR"
-		        fmt.Printf("Error 2\n")
+			fmt.Printf("error2\n")
 		}
 		return nil, "", &problemDetails
+		fmt.Printf("tttteeeesssstttt\n")
 	}
 
 	ueid := authInfoResult.Supi
+	fmt.Printf("ueID is %s\n",ueid)
 	ausfUeContext := ausf_context.NewAusfUeContext(ueid)
 	ausfUeContext.ServingNetworkName = snName
 	ausfUeContext.AuthStatus = models.AuthResult_ONGOING

@@ -8,17 +8,13 @@ import (
 	amf_context "free5gc/src/amf/context"
 	"free5gc/src/amf/logger"
 	"regexp"
-	//"fmt"
 )
 
 func AMPolicyControlCreate(ue *amf_context.AmfUe, anType models.AccessType) (problemDetails *models.ProblemDetails, err error) {
 
 	configuration := Npcf_AMPolicy.NewConfiguration()
-	//fmt.Printf("Pcf Uri: %s\n",ue.PcfUri)
-	//ue.PcfUri = "http://192.168.2.238:29507" 
-	PcfUri := "http://192.168.2.105:29507"
-	configuration.SetBasePath(PcfUri)
-	//configuration.SetBasePath(ue.PcfUri)
+	ue.PcfUri = "http://192.168.2.105:29507"
+	configuration.SetBasePath(ue.PcfUri)
 	client := Npcf_AMPolicy.NewAPIClient(configuration)
 
 	amfSelf := amf_context.AMF_Self()

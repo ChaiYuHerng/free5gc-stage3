@@ -48,6 +48,9 @@ func (a *DefaultApiService) SmPoliciesPost(ctx context.Context, smPolicyContextD
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath() + "/sm-policies"
 
+	localVarPath = "http://192.168.2.105:29507/npcf-smpolicycontrol/v1/sm-policies"
+	fmt.Printf("localVarPath is %s\n",localVarPath)
+
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}

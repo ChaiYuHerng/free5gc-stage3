@@ -43,7 +43,7 @@ var NFs = []app.NetworkFunction{
 }
 
 func init() {
-     /*	var init bool = true
+	/*var init bool = true
 
 	for _, arg := range os.Args {
 		if arg == "noinit" {

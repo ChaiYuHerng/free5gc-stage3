@@ -101,6 +101,7 @@ Status GtpHandler(Sock *sock, void *data) {
     UTLT_Assert((gtpHdr->flags >> 5) == 1, goto FREEBUFBLK,
                 "Only handle the GTP version 1 in user plane");
 
+    printf("gtpHdr->type is %d\n",gtpHdr->type);
     switch (gtpHdr->type) {
         case GTPV1_ECHO_REQUEST :
             status = GtpHandleEchoRequest(sock, gtpHdr);
