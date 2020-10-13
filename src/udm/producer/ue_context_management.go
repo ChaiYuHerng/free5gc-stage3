@@ -23,7 +23,8 @@ import (
 func createUDMClientToUDR(id string, nonUe bool) *Nudr_DataRepository.APIClient {
 	var addr string
 	if !nonUe {
-		addr = getUdrUri(id)
+		//addr = getUdrUri(id)
+		addr = "http://192.168.2.104:29504"
 	}
 	if addr == "" {
 		// dafault
@@ -33,13 +34,10 @@ func createUDMClientToUDR(id string, nonUe bool) *Nudr_DataRepository.APIClient 
 		config := factory.UdmConfig
 		udrclient := config.Configuration.Udrclient
 		addr = fmt.Sprintf("%s://%s:%d", udrclient.Scheme, udrclient.Ipv4Addr, udrclient.Port)
-		addr = "http://192.168.2.104:29504"
 	}
-	addr = "http://192.168.2.104:29504"
 	cfg := Nudr.NewConfiguration()
 	cfg.SetBasePath(addr)
 	clientAPI := Nudr.NewAPIClient(cfg)
-	fmt.Printf("hahahahaha addr is %s\n",addr)
 	return clientAPI
 }
 

@@ -137,15 +137,10 @@ func (a *AuthenticationDataDocumentApiService) QueryAuthSubsData(ctx context.Con
 		localVarFileBytes    []byte
 		localVarReturnValue  models.AuthenticationSubscription
 	)
-	fmt.Printf("now in the lib/..../QueryAuth function\n")
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath() + "/subscription-data/{ueId}/authentication-data/authentication-subscription"
 	localVarPath = strings.Replace(localVarPath, "{"+"ueId"+"}", fmt.Sprintf("%v", ueId), -1)
-
-	localVarPath = "http://192.168.2.104:29504/nudr-dr/v1/subscription-data/imsi-2089300007487/authentication-data/authentication-subscription"
-
-	fmt.Printf("localVarPath is %s\n",localVarPath)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -6,7 +6,6 @@ import (
 	"free5gc/lib/openapi/Nudm_SubscriberDataManagement"
 	"free5gc/lib/openapi/models"
 	amf_context "free5gc/src/amf/context"
-	"fmt"
 
 	"github.com/antihax/optional"
 )
@@ -30,9 +29,9 @@ func PutUpuAck(ue *amf_context.AmfUe, upuMacIue string) error {
 func SDMGetAmData(ue *amf_context.AmfUe) (problemDetails *models.ProblemDetails, err error) {
 
 	configuration := Nudm_SubscriberDataManagement.NewConfiguration()
-	ue.NudmSDMUri = "http://192.168.2.106:29503"
-	fmt.Printf("ue.NudmSDMUri is %s\n",ue.NudmSDMUri)
-	configuration.SetBasePath(ue.NudmSDMUri)
+	udmUrl :="http://192.168.2.106:29503"
+	configuration.SetBasePath(udmUrl)
+	//configuration.SetBasePath(ue.NudmSDMUri)
 	client := Nudm_SubscriberDataManagement.NewAPIClient(configuration)
 
 	getAmDataParamOpt := Nudm_SubscriberDataManagement.GetAmDataParamOpts{
@@ -59,8 +58,9 @@ func SDMGetAmData(ue *amf_context.AmfUe) (problemDetails *models.ProblemDetails,
 func SDMGetSmfSelectData(ue *amf_context.AmfUe) (problemDetails *models.ProblemDetails, err error) {
 
 	configuration := Nudm_SubscriberDataManagement.NewConfiguration()
-	ue.NudmSDMUri = "http://192.168.2.106:29503"
-	configuration.SetBasePath(ue.NudmSDMUri)
+	udmUrl :="http://192.168.2.106:29503"
+	configuration.SetBasePath(udmUrl)
+	//configuration.SetBasePath(ue.NudmSDMUri)
 	client := Nudm_SubscriberDataManagement.NewAPIClient(configuration)
 
 	paramOpt := Nudm_SubscriberDataManagement.GetSmfSelectDataParamOpts{
@@ -86,8 +86,9 @@ func SDMGetSmfSelectData(ue *amf_context.AmfUe) (problemDetails *models.ProblemD
 func SDMGetUeContextInSmfData(ue *amf_context.AmfUe) (problemDetails *models.ProblemDetails, err error) {
 
 	configuration := Nudm_SubscriberDataManagement.NewConfiguration()
-	ue.NudmSDMUri = "http://192.168.2.106:29503"
-	configuration.SetBasePath(ue.NudmSDMUri)
+	udmUrl :="http://192.168.2.106:29503"
+	configuration.SetBasePath(udmUrl)
+	//configuration.SetBasePath(ue.NudmSDMUri)
 	client := Nudm_SubscriberDataManagement.NewAPIClient(configuration)
 
 	data, httpResp, localErr := client.UEContextInSMFDataRetrievalApi.GetUeContextInSmfData(context.Background(), ue.Supi, nil)
@@ -110,8 +111,9 @@ func SDMGetUeContextInSmfData(ue *amf_context.AmfUe) (problemDetails *models.Pro
 func SDMSubscribe(ue *amf_context.AmfUe) (problemDetails *models.ProblemDetails, err error) {
 
 	configuration := Nudm_SubscriberDataManagement.NewConfiguration()
-	ue.NudmSDMUri = "http://192.168.2.106:29503"
-	configuration.SetBasePath(ue.NudmSDMUri)
+	udmUrl :="http://192.168.2.106:29503"
+	configuration.SetBasePath(udmUrl)
+	//configuration.SetBasePath(ue.NudmSDMUri)
 	client := Nudm_SubscriberDataManagement.NewAPIClient(configuration)
 
 	amfSelf := amf_context.AMF_Self()
@@ -138,9 +140,8 @@ func SDMSubscribe(ue *amf_context.AmfUe) (problemDetails *models.ProblemDetails,
 
 func SDMGetSliceSelectionSubscriptionData(ue *amf_context.AmfUe) (problemDetails *models.ProblemDetails, err error) {
 	configuration := Nudm_SubscriberDataManagement.NewConfiguration()
-	ue.NudmSDMUri = "http://192.168.2.106:29503"
-	fmt.Printf("ue.NudmSDMUri is %s\n",ue.NudmSDMUri)
-	configuration.SetBasePath(ue.NudmSDMUri)
+	udmUrl :="http://192.168.2.106:29503"
+	configuration.SetBasePath(udmUrl)
 	client := Nudm_SubscriberDataManagement.NewAPIClient(configuration)
 
 	paramOpt := Nudm_SubscriberDataManagement.GetNssaiParamOpts{

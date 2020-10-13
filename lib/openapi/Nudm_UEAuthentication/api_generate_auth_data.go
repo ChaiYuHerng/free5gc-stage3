@@ -47,6 +47,7 @@ func (a *GenerateAuthDataApiService) GenerateAuthData(ctx context.Context, supiO
 	)
 
 	// create path and map variables
+	fmt.Printf("BasePath: %s\n",a.client.cfg.BasePath())
 	localVarPath := a.client.cfg.BasePath() + "/{supiOrSuci}/security-information/generate-auth-data"
 	localVarPath = strings.Replace(localVarPath, "{"+"supiOrSuci"+"}", fmt.Sprintf("%v", supiOrSuci), -1)
 
@@ -72,17 +73,20 @@ func (a *GenerateAuthDataApiService) GenerateAuthData(ctx context.Context, supiO
 
 	r, err := openapi.PrepareRequest(ctx, a.client.cfg, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
+		fmt.Printf("error1\n")
 		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := openapi.CallAPI(a.client.cfg, r)
 	if err != nil || localVarHTTPResponse == nil {
+		fmt.Printf("error2\n")
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
+		fmt.Printf("error3\n")
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
@@ -93,10 +97,13 @@ func (a *GenerateAuthDataApiService) GenerateAuthData(ctx context.Context, supiO
 
 	switch localVarHTTPResponse.StatusCode {
 	case 200:
+		fmt.Printf("case 200\n")
 		err = openapi.Deserialize(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			apiError.ErrorStatus = err.Error()
+			fmt.Printf("case 200 error\n")
 		}
+		
 		return localVarReturnValue, localVarHTTPResponse, nil
 	case 400:
 		var v models.ProblemDetails
@@ -108,6 +115,7 @@ func (a *GenerateAuthDataApiService) GenerateAuthData(ctx context.Context, supiO
 		apiError.ErrorModel = v
 		return localVarReturnValue, localVarHTTPResponse, apiError
 	case 403:
+		fmt.Printf("case 403\n")
 		var v models.ProblemDetails
 		err = openapi.Deserialize(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
