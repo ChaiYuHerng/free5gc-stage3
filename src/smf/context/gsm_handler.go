@@ -4,7 +4,6 @@ import (
 	"free5gc/lib/nas/nasConvert"
 	"free5gc/lib/nas/nasMessage"
 	"free5gc/src/smf/logger"
-	"fmt"
 )
 
 func (smContext *SMContext) HandlePDUSessionEstablishmentRequest(req *nasMessage.PDUSessionEstablishmentRequest) {
@@ -35,7 +34,6 @@ func (smContext *SMContext) HandlePDUSessionEstablishmentRequest(req *nasMessage
 		for _, container := range protocolConfigurationOptions.ProtocolOrContainerList {
 			logger.GsmLog.Traceln("Container ID: ", container.ProtocolOrContainerID)
 			logger.GsmLog.Traceln("Container Length: ", container.LengthofContents)
-			fmt.Printf("Container ID is %s\n",container.ProtocolOrContainerID)
 			switch container.ProtocolOrContainerID {
 			case nasMessage.PCSCFIPv6AddressRequestUL:
 				logger.GsmLog.Infoln("Didn't Implement container type PCSCFIPv6AddressRequestUL")
@@ -93,10 +91,7 @@ func (smContext *SMContext) HandlePDUSessionEstablishmentRequest(req *nasMessage
 		}
 	}
 
-	fmt.Printf("break the for loop\n")
-
 	smContext.PDUAddress = AllocUEIP()
-	fmt.Printf("check it out yo~\n")
 }
 
 func (smContext *SMContext) HandlePDUSessionReleaseRequest(req *nasMessage.PDUSessionReleaseRequest) {

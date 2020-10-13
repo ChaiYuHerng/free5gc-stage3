@@ -51,8 +51,6 @@ func HandlePDUSessionSMContextCreate(rspChan chan smf_message.HandlerResponseMes
 	smContext.SetCreateData(createData)
 	smContext.SmStatusNotifyUri = createData.SmContextStatusUri
 
-	fmt.Printf("smContext.SmStatusNotifyUri is %s\n",smContext.SmStatusNotifyUri)
-
 	// Query UDM
 	consumer.SendNFDiscoveryUDM()
 
@@ -66,7 +64,6 @@ func HandlePDUSessionSMContextCreate(rspChan chan smf_message.HandlerResponseMes
 
 	SubscriberDataManagementClient := smf_context.SMF_Self().SubscriberDataManagementClient
 
-	fmt.Printf("goto getSmData\n")
 	sessSubData, _, err := SubscriberDataManagementClient.SessionManagementSubscriptionDataRetrievalApi.GetSmData(context.Background(), smContext.Supi, smDataParams)
 
 	if err != nil {
@@ -83,19 +80,11 @@ func HandlePDUSessionSMContextCreate(rspChan chan smf_message.HandlerResponseMes
 	smContext.HandlePDUSessionEstablishmentRequest(establishmentRequest)
 
 	logger.PduSessLog.Infof("PCF Selection for SMContext SUPI[%s] PDUSessionID[%d]\n", smContext.Supi, smContext.PDUSessionID)
-
-	fmt.Printf("try to go to PCFSelection/n")
-
 	err = smContext.PCFSelection()
 
 	if err != nil {
-		fmt.Printf("there is err\n")
 		logger.PduSessLog.Errorln("pcf selection error:", err)
 	}
-
-	fmt.Printf("so far no error\n")
-
-	fmt.Printf("start smPolicyData\n")
 
 	smPolicyData := models.SmPolicyContextData{}
 
@@ -116,13 +105,9 @@ func HandlePDUSessionSMContextCreate(rspChan chan smf_message.HandlerResponseMes
 	}
 	smPolicyData.SuppFeat = "F"
 
-	fmt.Printf("end smPolicyData\n")
-
 	smPolicyDecision, _, err := smContext.SMPolicyClient.DefaultApi.SmPoliciesPost(context.Background(), smPolicyData)
 
 	if err != nil {
-
-		fmt.Printf("smPolicyDecision error\n")
 		openapiError := err.(openapi.GenericOpenAPIError)
 		problemDetails := openapiError.Model().(models.ProblemDetails)
 		logger.PduSessLog.Errorln("setup sm policy association failed:", err, problemDetails)

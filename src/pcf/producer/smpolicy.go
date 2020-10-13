@@ -29,9 +29,7 @@ func CreateSmPolicy(httpChannel chan message.HttpResponseMessage, request models
 		logger.SMpolicylog.Warnf("Supi[%s] is not supported in PCF", request.Supi)
 		message.SendHttpResponseMessage(httpChannel, nil, int(rsp.Status), rsp)
 	}
-	//udrUri := getUdrUri(ue)
-	udrUri := "http://192.168.2.104:29504"
-	fmt.Printf("test ~~~ udrUri is %s\n",udrUri)
+	udrUri := getUdrUri(ue)
 	if udrUri == "" {
 		rsp := util.GetProblemDetail("Can't find corresponding UDR with UE", util.USER_UNKNOWN)
 		logger.SMpolicylog.Warnf("Can't find corresponding UDR with UE[%s]", ue.Supi)

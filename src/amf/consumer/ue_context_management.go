@@ -2,7 +2,6 @@ package consumer
 
 import (
 	"context"
-	"fmt"
 	"free5gc/lib/openapi"
 	"free5gc/lib/openapi/Nudm_UEContextManagement"
 	"free5gc/lib/openapi/models"
@@ -12,10 +11,9 @@ import (
 func UeCmRegistration(ue *amf_context.AmfUe, accessType models.AccessType, initialRegistrationInd bool) (problemDetails *models.ProblemDetails, err error) {
 
 	configuration := Nudm_UEContextManagement.NewConfiguration()
-	fmt.Printf("before ue.NudmUECMUri is %s\n",ue.NudmUECMUri)
-	ue.NudmUECMUri = "http://192.168.2.106:29503"
-	fmt.Printf("after ue.NudmUECMUri is %s\n",ue.NudmUECMUri)
-	configuration.SetBasePath(ue.NudmUECMUri)
+	udmUrl :="http://192.168.2.106:29503"
+	configuration.SetBasePath(udmUrl)
+	//configuration.SetBasePath(ue.NudmUECMUri)
 	client := Nudm_UEContextManagement.NewAPIClient(configuration)
 
 	amfSelf := amf_context.AMF_Self()
