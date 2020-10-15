@@ -169,7 +169,9 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 
 		//smfID, smfUri, err := selectSmf(ue, anType, &pduSession, payload)
 		var smfID string
-		smfUri := "http://192.168.2.103:29502"
+		//smfUri := "http://192.168.2.103:29502"
+		smfUri := "http://192.168.2.114:29512"
+		//smfUri := "http://192.168.2.115:29522"
 		fmt.Printf("smfID: %s , smfUri:%s\n",smfID,smfUri)
 		/*if err != nil {
 			logger.GmmLog.Errorf("[AMF] SMF Selection for Snssai[%+v] Failed[%+v]", sNssai, err)
@@ -294,7 +296,7 @@ func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.P
 
 	//amfSelf := context.AMF_Self()
 	//nrfUri := amfSelf.NrfUri // default NRF URI is pre-configured by AMF
-        nrfUri := "http://192.168.2.238:29510"
+    nrfUri := "http://192.168.2.101:29510"
 	nsiInformation := ue.GetNsiInformationFromSnssai(anType, *pduSession.SNssai)
 	if nsiInformation == nil {
 		/*if ue.NssfUri == "" {
@@ -309,7 +311,7 @@ func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.P
 				}
 			}
 		}*/
-		ue.NssfUri = "http://192.168.2.238:29531"
+		ue.NssfUri = "http://192.168.2.107:29531"
                 fmt.Printf("ue NssfUri: %s\n",ue.NssfUri)
 		res, problemDetails, err := consumer.NSSelectionGetForPduSession(ue, *pduSession.SNssai)
 		if problemDetails != nil {
