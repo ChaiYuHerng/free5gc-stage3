@@ -51,6 +51,55 @@ const upfIpAddr string = "192.168.2.111" // 110, 111
 const dNServer  string = "192.168.2.26" // 205, 206
 var dNServerI = [4]byte{192, 168, 2, 26} // 205, 206
 
+var compared_ues = []UE{
+	{
+		Supi:        "imsi-2089300007487",
+		Teid:        1,
+		RanUeNgapId: 1,
+		AmfUeNgapId: 1,
+		MobileIdentity5GS: nasType.MobileIdentity5GS{
+			Len:    12, //, suci
+			Buffer: []uint8{0x01, 0x02, 0xf8, 0x39, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x47, 0x78},
+		},
+		PduSessionId1: 10,
+		PduSessionId2: 10,
+		DN:            "internet",
+		Ip:            "60.60.0.1",
+		ranIpAddr:     ranIpAddr,
+	},
+	{
+		Supi:        "imsi-2089300007488",
+		Teid:        2,
+		RanUeNgapId: 2,
+		AmfUeNgapId: 2,
+		MobileIdentity5GS: nasType.MobileIdentity5GS{
+			Len:    12, //, suci
+			Buffer: []uint8{0x01, 0x02, 0xf8, 0x39, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x47, 0x88},
+		},
+		PduSessionId1: 11,
+		PduSessionId2: 11,
+		DN:            "internet2",
+		Ip:            "60.60.0.2",
+		ranIpAddr:     ranIpAddr,
+	},
+	{
+		Supi:        "imsi-2089300007489",
+		Teid:        3,
+		RanUeNgapId: 3,
+		AmfUeNgapId: 3,
+		MobileIdentity5GS: nasType.MobileIdentity5GS{
+			Len:    12, //, suci
+			Buffer: []uint8{0x01, 0x02, 0xf8, 0x39, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x47, 0x98},
+		},
+		PduSessionId1: 12,
+		PduSessionId2: 12,
+		DN:            "internet3",
+		Ip:            "60.60.0.3",
+		ranIpAddr:     ranIpAddr,
+	},
+}
+
+
 func BuildGTPHeader(teid uint32, seq uint16) ([]byte, error) {
     var ml uint16 = 52
     gtpheader := &layers.GTPv1U{

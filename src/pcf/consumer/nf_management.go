@@ -25,6 +25,8 @@ func BuildNFInstance(context *pcf_context.PCFContext) (profile models.NfProfile,
 		DnnList: []string{
 			"free5gc",
 			"internet",
+			"internet2",
+			"internet3",
 		},
 		// SupiRanges: &[]models.SupiRange{
 		// 	{

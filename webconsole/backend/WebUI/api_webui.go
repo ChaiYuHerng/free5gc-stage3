@@ -145,6 +145,48 @@ func GetSampleJSON(c *gin.Context) {
 					PriorityLevel: 8,
 				},
 			},
+			"internet2": models.DnnConfiguration{
+				PduSessionTypes: &models.PduSessionTypes{
+					DefaultSessionType:  models.PduSessionType_IPV4,
+					AllowedSessionTypes: []models.PduSessionType{models.PduSessionType_IPV4},
+				},
+				SscModes: &models.SscModes{
+					DefaultSscMode:  models.SscMode__1,
+					AllowedSscModes: []models.SscMode{models.SscMode__1},
+				},
+				SessionAmbr: &models.Ambr{
+					Downlink: "1000 Kbps",
+					Uplink:   "1000 Kbps",
+				},
+				Var5gQosProfile: &models.SubscribedDefaultQos{
+					Var5qi: 9,
+					Arp: &models.Arp{
+						PriorityLevel: 9,
+					},
+					PriorityLevel: 9,
+				},
+			},
+			"internet3": models.DnnConfiguration{
+				PduSessionTypes: &models.PduSessionTypes{
+					DefaultSessionType:  models.PduSessionType_IPV4,
+					AllowedSessionTypes: []models.PduSessionType{models.PduSessionType_IPV4},
+				},
+				SscModes: &models.SscModes{
+					DefaultSscMode:  models.SscMode__1,
+					AllowedSscModes: []models.SscMode{models.SscMode__1},
+				},
+				SessionAmbr: &models.Ambr{
+					Downlink: "1000 Kbps",
+					Uplink:   "1000 Kbps",
+				},
+				Var5gQosProfile: &models.SubscribedDefaultQos{
+					Var5qi: 9,
+					Arp: &models.Arp{
+						PriorityLevel: 10,
+					},
+					PriorityLevel: 10,
+				},
+			},
 		},
 	}
 
@@ -161,6 +203,34 @@ func GetSampleJSON(c *gin.Context) {
 				DnnInfos: []models.DnnInfo{
 					{
 						Dnn: "internet",
+					},
+				},
+			},
+			"02010204": {
+				DnnInfos: []models.DnnInfo{
+					{
+						Dnn: "internet2",
+					},
+				},
+			},
+			"02112234": {
+				DnnInfos: []models.DnnInfo{
+					{
+						Dnn: "internet2",
+					},
+				},
+			},
+			"03010205": {
+				DnnInfos: []models.DnnInfo{
+					{
+						Dnn: "internet3",
+					},
+				},
+			},
+			"03112235": {
+				DnnInfos: []models.DnnInfo{
+					{
+						Dnn: "internet3",
 					},
 				},
 			},
@@ -194,6 +264,50 @@ func GetSampleJSON(c *gin.Context) {
 				SmPolicyDnnData: map[string]models.SmPolicyDnnData{
 					"internet": {
 						Dnn: "internet",
+					},
+				},
+			},
+			"02010204": {
+				Snssai: &models.Snssai{
+					Sd:  "010204",
+					Sst: 2,
+				},
+				SmPolicyDnnData: map[string]models.SmPolicyDnnData{
+					"internet2": {
+						Dnn: "internet2",
+					},
+				},
+			},
+			"02112234": {
+				Snssai: &models.Snssai{
+					Sd:  "112234",
+					Sst: 2,
+				},
+				SmPolicyDnnData: map[string]models.SmPolicyDnnData{
+					"internet2": {
+						Dnn: "internet2",
+					},
+				},
+			},
+			"03010205": {
+				Snssai: &models.Snssai{
+					Sd:  "010205",
+					Sst: 3,
+				},
+				SmPolicyDnnData: map[string]models.SmPolicyDnnData{
+					"internet3": {
+						Dnn: "internet3",
+					},
+				},
+			},
+			"03112235": {
+				Snssai: &models.Snssai{
+					Sd:  "112235",
+					Sst: 3,
+				},
+				SmPolicyDnnData: map[string]models.SmPolicyDnnData{
+					"internet3": {
+						Dnn: "internet3",
 					},
 				},
 			},

@@ -63,6 +63,34 @@ func init() {
 					},
 				},
 			},
+			"02010204": { // sst:2, sd:010204
+				DnnInfos: []models.DnnInfo{
+					{
+						Dnn: "internet2",
+					},
+				},
+			},
+			"02112234": { // sst:2, sd:112234
+				DnnInfos: []models.DnnInfo{
+					{
+						Dnn: "internet2",
+					},
+				},
+			},
+			"03010205": { // sst:3, sd:010205
+				DnnInfos: []models.DnnInfo{
+					{
+						Dnn: "internet3",
+					},
+				},
+			},
+			"03112235": { // sst:3, sd:112235
+				DnnInfos: []models.DnnInfo{
+					{
+						Dnn: "internet3",
+					},
+				},
+			},
 		},
 	}
 
