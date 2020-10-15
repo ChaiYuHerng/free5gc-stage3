@@ -124,6 +124,50 @@ func init() {
 					},
 				},
 			},
+			"02010204": {
+				Snssai: &models.Snssai{
+					Sd:  "010204",
+					Sst: 2,
+				},
+				SmPolicyDnnData: map[string]models.SmPolicyDnnData{
+					"internet2": {
+						Dnn: "internet2",
+					},
+				},
+			},
+			"02112234": {
+				Snssai: &models.Snssai{
+					Sd:  "112234",
+					Sst: 2,
+				},
+				SmPolicyDnnData: map[string]models.SmPolicyDnnData{
+					"internet2": {
+						Dnn: "internet2",
+					},
+				},
+			},
+			"03010205": {
+				Snssai: &models.Snssai{
+					Sd:  "010205",
+					Sst: 3,
+				},
+				SmPolicyDnnData: map[string]models.SmPolicyDnnData{
+					"internet3": {
+						Dnn: "internet3",
+					},
+				},
+			},
+			"03112235": {
+				Snssai: &models.Snssai{
+					Sd:  "112235",
+					Sst: 3,
+				},
+				SmPolicyDnnData: map[string]models.SmPolicyDnnData{
+					"internet3": {
+						Dnn: "internet3",
+					},
+				},
+			},
 		},
 	}
 

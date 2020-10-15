@@ -208,6 +208,34 @@ class SubscriberModal extends Component {
                 "dnn": "internet"
               }
             ]
+          },
+          "02010204": {
+            "dnnInfos": [
+              {
+                "dnn": "internet2"
+              }
+            ]
+          },
+          "02112234": {
+            "dnnInfos": [
+              {
+                "dnn": "internet2"
+              }
+            ]
+          },
+          "03010205": {
+            "dnnInfos": [
+              {
+                "dnn": "internet3"
+              }
+            ]
+          },
+          "01112233": {
+            "dnnInfos": [
+              {
+                "dnn": "internet3"
+              }
+            ]
           }
         },
       },
@@ -237,6 +265,50 @@ class SubscriberModal extends Component {
             "smPolicyDnnData": {
               "internet": {
                 "dnn": "internet"
+              }
+            }
+          },
+          "02010204": {
+            "snssai": {
+              "sst": 2,
+              "sd": "010204"
+            },
+            "smPolicyDnnData": {
+              "internet2": {
+                "dnn": "internet2"
+              }
+            }
+          },
+          "02112234": {
+            "snssai": {
+              "sst": 2,
+              "sd": "112234"
+            },
+            "smPolicyDnnData": {
+              "internet2": {
+                "dnn": "internet2"
+              }
+            }
+          },
+          "03010205": {
+            "snssai": {
+              "sst": 3,
+              "sd": "010205"
+            },
+            "smPolicyDnnData": {
+              "internet3": {
+                "dnn": "internet3"
+              }
+            }
+          },
+          "03112235": {
+            "snssai": {
+              "sst": 3,
+              "sd": "112235"
+            },
+            "smPolicyDnnData": {
+              "internet3": {
+                "dnn": "internet3"
               }
             }
           }
