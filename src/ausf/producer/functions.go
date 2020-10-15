@@ -247,7 +247,7 @@ func ConstructEapNoTypePkt(code radius.EapCode, pktID uint8) string {
 }
 
 func getUdmUrl(nrfUri string) string {
-	udmUrl := "https://localhost:29503" // default
+	udmUrl := "https://192.168.2.106:29503" // default
 	nfDiscoverParam := Nnrf_NFDiscovery.SearchNFInstancesParamOpts{
 		ServiceNames: optional.NewInterface([]models.ServiceName{models.ServiceName_NUDM_UEAU}),
 	}
@@ -264,7 +264,7 @@ func getUdmUrl(nrfUri string) string {
 	} else {
 		logger.UeAuthPostLog.Errorln("[Search UDM UEAU] len(NfInstances) = 0")
 	}
-	udmUrl := "https://192.168.2.106:29503"
+	//udmUrl := "https://192.168.2.106:29503"
 	return udmUrl
 }
 
