@@ -224,7 +224,7 @@ func (upi *UserPlaneInformation) GenerateDefaultPath(dnn string) (pathExist bool
 		fmt.Printf("node is %s\n",node)
 		if node.Type == UPNODE_AN {
 			source = node
-			break
+			break	
 		}
 	}
 
