@@ -217,13 +217,18 @@ func (upi *UserPlaneInformation) GenerateDefaultPath(dnn string) (pathExist bool
 	var source *UPNode
 	var destination *UPNode
 
+	fmt.Printf("check1\n")
+
 	for _, node := range upi.AccessNetwork {
 
+		fmt.Printf("node is %s\n",node)
 		if node.Type == UPNODE_AN {
 			source = node
 			break
 		}
 	}
+
+	fmt.Printf("check2\n")
 
 	if source == nil {
 		logger.CtxLog.Errorf("There is no AN Node in config file!")
