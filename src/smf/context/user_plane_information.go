@@ -155,6 +155,7 @@ func (upi *UserPlaneInformation) GetUPFIDByIP(ip string) string {
 }
 
 func (upi *UserPlaneInformation) GetDefaultUserPlanePathByDNN(dnn string) (path UPPath) {
+	fmt.Printf("this is GetDefaultUserPlanePathByDNN,noe dnn is %s\n",dnn)
 	path, pathExist := upi.DefaultUserPlanePath[dnn]
 
 	if pathExist {
@@ -243,7 +244,7 @@ func (upi *UserPlaneInformation) GenerateDefaultPath(dnn string) (pathExist bool
 		fmt.Printf("check4\n")
 		if node.UPF.UPIPInfo.NetworkInstance != nil {
 			node_dnn := string(node.UPF.UPIPInfo.NetworkInstance)
-			fmt.Printf("node_dnn is %s\n",node_dnn)
+			fmt.Printf("node_dnn is %s,dnn is %s\n",node_dnn,dnn)
 			if node_dnn == dnn {
 				destination = node
 				break
