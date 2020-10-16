@@ -5,6 +5,7 @@ import (
 	"free5gc/src/smf/factory"
 	"free5gc/src/smf/logger"
 	"net"
+	"fmt"
 	"reflect"
 )
 
@@ -221,7 +222,7 @@ func (upi *UserPlaneInformation) GenerateDefaultPath(dnn string) (pathExist bool
 
 	for _, node := range upi.AccessNetwork {
 
-		fmt.Printf("node is %s\n",node)
+		fmt.Printf("nodeType is %s\n",node.Type)
 		if node.Type == UPNODE_AN {
 			source = node
 			break	
@@ -235,10 +236,14 @@ func (upi *UserPlaneInformation) GenerateDefaultPath(dnn string) (pathExist bool
 		return false
 	}
 
+	fmt.Printf("check3\n")
+
 	for _, node := range upi.UPFs {
 
+		fmt.Printf("check4\n")
 		if node.UPF.UPIPInfo.NetworkInstance != nil {
 			node_dnn := string(node.UPF.UPIPInfo.NetworkInstance)
+			fmt.Printf("node_dnn is %s\n",node_dnn)
 			if node_dnn == dnn {
 				destination = node
 				break
