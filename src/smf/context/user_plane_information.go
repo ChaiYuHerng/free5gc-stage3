@@ -245,10 +245,12 @@ func (upi *UserPlaneInformation) GenerateDefaultPath(dnn string) (pathExist bool
 		if node.UPF.UPIPInfo.NetworkInstance != nil {
 			node_dnn := string(node.UPF.UPIPInfo.NetworkInstance)
 			fmt.Printf("node_dnn is %s,dnn is %s\n",node_dnn,dnn)
-			if node_dnn == dnn {
+			/*if node_dnn == dnn {
 				destination = node
 				break
-			}
+			}*/
+			destination = node_dnn
+			break
 		}
 	}
 
