@@ -249,7 +249,7 @@ func (upi *UserPlaneInformation) GenerateDefaultPath(dnn string) (pathExist bool
 				destination = node
 				break
 			}*/
-			destination = node.UPF.UPIPInfo.NetworkInstance
+			destination = node
 			break
 		}
 	}
