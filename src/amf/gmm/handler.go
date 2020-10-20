@@ -175,7 +175,7 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 
 		//smfID, smfUri, err := selectSmf(ue, anType, &pduSession, payload)
 		var smfID string
-		var smfUri string
+		//var smfUri string
 		//var UeType int
 		UeType := sNssai.Sst
 		fmt.Printf("UeType is %d\n",UeType)
