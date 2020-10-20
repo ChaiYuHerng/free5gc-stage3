@@ -249,7 +249,7 @@ func getSmPolicyData() (smPolicyData models.SmPolicyData) {
 }
 
 // Need to configure
-var rg_ues = my_ue2
+var rg_ues = my_ue
 
 // Registration
 func TestRegistration(t *testing.T) {
@@ -393,8 +393,8 @@ func TestRegistration(t *testing.T) {
 	// send GetPduSessionEstablishmentRequest Msg
 
 	sNssai := models.Snssai{
-		Sst: 2,
-		Sd:  "010204",
+		Sst: 1,
+		Sd:  "010203",
 	}
 	pdu = nasTestpacket.GetUlNasTransport_PduSessionEstablishmentRequest(rg_ues.PduSessionId1, nasMessage.ULNASTransportRequestTypeInitialRequest, rg_ues.DN, &sNssai)
 	pdu, err = test.EncodeNasPduWithSecurity(ue, pdu, nas.SecurityHeaderTypeIntegrityProtectedAndCiphered, true, false)
