@@ -51,6 +51,35 @@ const upfIpAddr string = "192.168.2.111" // 110, 111
 const dNServer  string = "192.168.2.26" // 205, 206
 var dNServerI = [4]byte{192, 168, 2, 26} // 205, 206
 
+type UE struct {
+    Supi              string
+    Teid              uint32
+    RanUeNgapId       int64
+    AmfUeNgapId       int64
+    MobileIdentity5GS nasType.MobileIdentity5GS
+    PduSessionId2     int64
+    PduSessionId1     uint8
+    DN                string
+    Ip                string
+    ranIpAddr         string
+}
+
+var my_ue = UE{
+    Supi:        "imsi-2089300007487",
+    Teid:        1,
+    RanUeNgapId: 1,
+    AmfUeNgapId: 1,
+    MobileIdentity5GS: nasType.MobileIdentity5GS{
+        Len:    12, //, suci
+        Buffer: []uint8{0x01, 0x02, 0xf8, 0x39, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x47, 0x78},
+    },
+    PduSessionId1: 10,
+    PduSessionId2: 10,
+    DN:            "internet",
+    Ip:            "60.60.0.1",
+    ranIpAddr:     ranIpAddr,
+}
+
 var compared_ues = []UE{
 	{
 		Supi:        "imsi-2089300007487",
@@ -202,6 +231,9 @@ func getSmPolicyData() (smPolicyData models.SmPolicyData) {
 	return TestRegistrationProcedure.TestSmPolicyDataTable[TestRegistrationProcedure.FREE5GC_CASE]
 }
 
+// Need to configure
+var rg_ues = my_ue
+
 // Registration
 func TestRegistration(t *testing.T) {
 	var n int
@@ -230,8 +262,8 @@ func TestRegistration(t *testing.T) {
         fmt.Printf("receive NGSetupResponse Msg\n")
 	// New UE
 	// ue := test.NewRanUeContext("imsi-2089300007487", 1, security.AlgCiphering128NEA2, security.AlgIntegrity128NIA2)
-	ue := test.NewRanUeContext("imsi-2089300007487", 1, security.AlgCiphering128NEA0, security.AlgIntegrity128NIA2)
-	ue.AmfUeNgapId = 1
+	ue := test.NewRanUeContext(ueData.Supi, ueData.RanUeNgapId, security.AlgCiphering128NEA0, security.AlgIntegrity128NIA2)
+	ue.AmfUeNgapId = ueData.AmfUeNgapId
 	ue.AuthenticationSubs = getAuthSubscription()
 	// insert UE data to MongoDB
 
@@ -271,10 +303,10 @@ func TestRegistration(t *testing.T) {
 	}
         fmt.Printf("insert UE data to MongoDB\n")
 	// send InitialUeMessage(Registration Request)(imsi-2089300007487)
-	mobileIdentity5GS := nasType.MobileIdentity5GS{
-		Len:    12, // suci
-		Buffer: []uint8{0x01, 0x02, 0xf8, 0x39, 0xf0, 0xff, 0x00, 0x00, 0x00, 0x00, 0x47, 0x78},
-	}
+	mobileIdentity5GS := ueData.MobileIdentity5GS
+		//Len:    12, // suci
+		//Buffer: []uint8{0x01, 0x02, 0xf8, 0x39, 0xf0, 0xff, 0x00, 0x00, 0x00, 0x00, 0x47, 0x78},
+	//}
 
 	ueSecurityCapability := setUESecurityCapability(ue)
 	registrationRequest := nasTestpacket.GetRegistrationRequestWith5GMM(nasMessage.RegistrationType5GSInitialRegistration, mobileIdentity5GS, nil, nil, ueSecurityCapability)
@@ -347,7 +379,7 @@ func TestRegistration(t *testing.T) {
 		Sst: 1,
 		Sd:  "010203",
 	}
-	pdu = nasTestpacket.GetUlNasTransport_PduSessionEstablishmentRequest(10, nasMessage.ULNASTransportRequestTypeInitialRequest, "internet", &sNssai)
+	pdu = nasTestpacket.GetUlNasTransport_PduSessionEstablishmentRequest(ueData.PduSessionId1, nasMessage.ULNASTransportRequestTypeInitialRequest, "internet", &sNssai)
 	pdu, err = test.EncodeNasPduWithSecurity(ue, pdu, nas.SecurityHeaderTypeIntegrityProtectedAndCiphered, true, false)
 	//fmt.Printf("check1\n")
 	assert.Nil(t, err)
