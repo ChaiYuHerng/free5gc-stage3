@@ -135,6 +135,8 @@ func HandlePDUSessionSMContextCreate(rspChan chan smf_message.HandlerResponseMes
 		smContext.BPManager = smf_context.NewBPManager(createData.Supi)
 	} else {
 		logger.PduSessLog.Infof("SUPI[%s] has no pre-config route", createData.Supi)
+		fmt.Printf("ttttesssttttt\n")
+		fmt.Printf("createData.Dnn is %s\n",createData.Dnn)
 		defaultUPPath := smf_context.GetUserPlaneInformation().GetDefaultUserPlanePathByDNN(createData.Dnn)
 		smContext.AllocateLocalSEIDForUPPath(defaultUPPath)
 		defaultPath = smf_context.GenerateDataPath(defaultUPPath, smContext)
