@@ -175,16 +175,16 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 
 		//smfID, smfUri, err := selectSmf(ue, anType, &pduSession, payload)
 		var smfID string
-		//var smfUri string
+		var smfUri string
 		//var UeType int
 		UeType := sNssai.Sst
 		fmt.Printf("UeType is %d\n",UeType)
 		if UeType == 1 {
-			smfUri := "http://192.168.2.103:29502"
+			smfUri = "http://192.168.2.103:29502"
 		} else if UeType ==2 {
-			smfUri := "http://192.168.2.114:29512"
+			smfUri = "http://192.168.2.114:29512"
 		} else {
-			smfUri := "http://192.168.2.115:29522"
+			smfUri = "http://192.168.2.115:29522"
 		} 
 		//smfUri := "http://192.168.2.103:29502"
 		//smfUri := "http://192.168.2.114:29512"
