@@ -33,8 +33,8 @@ import (
 	"github.com/mohae/deepcopy"
 )
 
-var UeType int
-var MySelect string
+//var UeType int
+//var MySelect string
 func HandleULNASTransport(ue *context.AmfUe, anType models.AccessType, procedureCode int64, ulNasTransport *nasMessage.ULNASTransport, securityHeaderType uint8) error {
 	logger.GmmLog.Infoln("Handle UL NAS Transport")
 
