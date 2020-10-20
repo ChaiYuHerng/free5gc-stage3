@@ -102,6 +102,10 @@ func ManageSmData(smDatafromUDR []models.SessionManagementSubscriptionData, snss
 
 	smDataMap := make(map[string]models.SessionManagementSubscriptionData)
 	sNssaiList := make([]string, len(smDatafromUDR))
+	fmt.Printf("length of sNssai is %d\n",len(sNssaiList))
+	for item := range sNssaiList {
+		fmt.Printf("item is %s\n",item)
+	}
 	AllDnnConfigsbyDnn := make([]models.DnnConfiguration, 1, len(sNssaiList)) // to obtain all DNN configurations identified by "dnn" for all network slices where such DNN is available
 	AllDnns := make([]map[string]models.DnnConfiguration, len(smDatafromUDR)) // to obtain all DNN configurations for all network slice(s)
 	var snssaikey string                                                      // Required snssai to obtain all DNN configurations
