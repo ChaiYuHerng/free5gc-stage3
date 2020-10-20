@@ -372,22 +372,22 @@ func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.P
 	}
 
 	// select the first SMF, TODO: select base on other info
-	/*for _, nfProfile := range result.NfInstances {
+	for _, nfProfile := range result.NfInstances {
 		smfUri = util.SearchNFServiceUri(nfProfile, models.ServiceName_NSMF_PDUSESSION, models.NfServiceStatus_REGISTERED)
 		if smfUri != "" {
 			break
 		}
-	}*/
+	}
 	//UeType := sNssai.Sst
-	fmt.Printf("UeType is %d\n",UeType)
+	//fmt.Printf("UeType is %d\n",UeType)
 
-	if UeType == 1 {
+	/*if UeType == 1 {
 		MySelect := "http://192.168.2.103:29502"
 	} else if UeType ==2 {
 		MySelect := "http://192.168.2.114:29512"
 	} else {
 		MySelect := "http://192.168.2.115:29522"
-	}
+	}*/
 	//smfUri := "http://192.168.2.103:29502"
 	//smfUri := "http://192.168.2.114:29512"
 	//smfUri := "http://192.168.2.115:29522"
