@@ -173,8 +173,9 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 		fmt.Printf("go into smfSelect\n")
 		//UeType := sNssai.Sst
 
-		//smfID, smfUri, err := selectSmf(ue, anType, &pduSession, payload, UeType)
-		//var smfID string
+		//smfID, smfUri, err := selectSmf(ue, anType, &pduSession, payload)
+		var smfID string
+		var smfUri string
 		var UeType int
 		UeType := sNssai.Sst
 		fmt.Printf("UeType is %d\n",UeType)
@@ -310,7 +311,7 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 	return nil
 }
 
-func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.PduSessionContext, payload []byte, UeType int) (smfID string, smfUri string, err error) {
+func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.PduSessionContext, payload []byte) (smfID string, smfUri string, err error) {
 
 	//amfSelf := context.AMF_Self()
 	//nrfUri := amfSelf.NrfUri // default NRF URI is pre-configured by AMF
