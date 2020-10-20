@@ -45,7 +45,8 @@ var udpInterval time.Duration = 100 * time.Nanosecond
 var udpPacketCount int =        15000
 var totalUdpPacket int = 120000000000
 
-const ranIpAddr string = "192.168.2.35"
+const my_type int = 1
+const ranIpAddr string = "192.168.2.248"
 const amfIpAddr string = "192.168.2.102" // no need to change
 const upfIpAddr string = "192.168.2.111" // 110, 111
 const dNServer  string = "192.168.2.26" // 205, 206
@@ -128,6 +129,9 @@ var compared_ues = []UE{
 	},
 }
 
+func TypeRequest(){
+	return my_type
+}
 
 func BuildGTPHeader(teid uint32, seq uint16) ([]byte, error) {
     var ml uint16 = 52
@@ -379,7 +383,7 @@ func TestRegistration(t *testing.T) {
 		Sst: 1,
 		Sd:  "010203",
 	}
-	pdu = nasTestpacket.GetUlNasTransport_PduSessionEstablishmentRequest(rg_ues.PduSessionId1, nasMessage.ULNASTransportRequestTypeInitialRequest, "internet", &sNssai)
+	pdu = nasTestpacket.GetUlNasTransport_PduSessionEstablishmentRequest(rg_ues.PduSessionId1, nasMessage.ULNASTransportRequestTypeInitialRequest, rg_ues.DN, &sNssai)
 	pdu, err = test.EncodeNasPduWithSecurity(ue, pdu, nas.SecurityHeaderTypeIntegrityProtectedAndCiphered, true, false)
 	//fmt.Printf("check1\n")
 	assert.Nil(t, err)

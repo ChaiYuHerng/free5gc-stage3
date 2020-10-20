@@ -21,6 +21,7 @@ import (
 	ngap_message "free5gc/src/amf/ngap/message"
 	"free5gc/src/amf/producer/callback"
 	"free5gc/src/amf/util"
+	"free5gc/src/test"
 	//"net/url"
 	"reflect"
 	"strconv"
@@ -169,8 +170,11 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 
 		//smfID, smfUri, err := selectSmf(ue, anType, &pduSession, payload)
 		var smfID string
-		//smfUri := "http://192.168.2.103:29502"
-		smfUri := "http://192.168.2.114:29512"
+		var UeType int
+		UeType := TypeRequest()
+		fmt.Prinetf("UeType is %d\n",UeType)
+		smfUri := "http://192.168.2.103:29502"
+		//smfUri := "http://192.168.2.114:29512"
 		//smfUri := "http://192.168.2.115:29522"
 		fmt.Printf("smfID: %s , smfUri:%s\n",smfID,smfUri)
 		/*if err != nil {
