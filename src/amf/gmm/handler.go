@@ -21,7 +21,7 @@ import (
 	ngap_message "free5gc/src/amf/ngap/message"
 	"free5gc/src/amf/producer/callback"
 	"free5gc/src/amf/util"
-	"home/ubuntu/free5gc-stage3/src/test"
+	"../home/ubuntu/free5gc-stage3/src/test"
 	//"net/url"
 	"reflect"
 	"strconv"
