@@ -39,6 +39,22 @@ func init() {
 					Sst: 1,
 					Sd:  "112233",
 				},
+				{
+					Sst: 2,
+					Sd:  "010204",
+				},
+				{
+					Sst: 2,
+					Sd:  "112234",
+				},
+				{
+					Sst: 3,
+					Sd:  "010205",
+				},
+				{
+					Sst: 3,
+					Sd:  "112235",
+				},
 			},
 		},
 		SubscribedUeAmbr: &models.AmbrRm{

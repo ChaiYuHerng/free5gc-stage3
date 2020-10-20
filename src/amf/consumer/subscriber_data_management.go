@@ -149,7 +149,7 @@ func SDMGetSliceSelectionSubscriptionData(ue *amf_context.AmfUe) (problemDetails
 	}
 	nssai, httpResp, localErr := client.SliceSelectionSubscriptionDataRetrievalApi.GetNssai(context.Background(), ue.Supi, &paramOpt)
 	if localErr == nil {
-		for _, defaultSnssai := range nssai.DefaultSingleNssais {
+		for _, defaultSnssai := range nssai.SingleNssais {
 			subscribedSnssai := models.SubscribedSnssai{
 				SubscribedSnssai: &models.Snssai{
 					Sst: defaultSnssai.Sst,
