@@ -34,7 +34,7 @@ import (
 )
 
 var UeType int
-
+var MySelect string
 func HandleULNASTransport(ue *context.AmfUe, anType models.AccessType, procedureCode int64, ulNasTransport *nasMessage.ULNASTransport, securityHeaderType uint8) error {
 	logger.GmmLog.Infoln("Handle UL NAS Transport")
 
@@ -173,7 +173,7 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 		fmt.Printf("go into smfSelect\n")
 		UeType := sNssai.Sst
 
-		smfID, smfUri, err := selectSmf(ue, anType, &pduSession, payload)
+		smfID, smfUri, err := selectSmf(ue, anType, &pduSession, payload, UeType)
 		//var smfID string
 		//var UeType int
 		/*UeType := sNssai.Sst
@@ -182,6 +182,8 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 		smfUri := "http://192.168.2.103:29502"
 		//smfUri := "http://192.168.2.114:29512"
 		//smfUri := "http://192.168.2.115:29522"*/
+
+		smfUri = MySelect
 		fmt.Printf("smfID: %s , smfUri:%s\n",smfID,smfUri)
 		/*if err != nil {
 			logger.GmmLog.Errorf("[AMF] SMF Selection for Snssai[%+v] Failed[%+v]", sNssai, err)
@@ -302,7 +304,7 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 	return nil
 }
 
-func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.PduSessionContext, payload []byte) (smfID string, smfUri string, err error) {
+func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.PduSessionContext, payload []byte, UeType int) (smfID string, smfUri string, err error) {
 
 	//amfSelf := context.AMF_Self()
 	//nrfUri := amfSelf.NrfUri // default NRF URI is pre-configured by AMF
@@ -371,12 +373,13 @@ func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.P
 	}*/
 	//UeType := sNssai.Sst
 	fmt.Printf("UeType is %d\n",UeType)
+
 	if UeType == 1 {
-		smfUri := "http://192.168.2.103:29502"
+		MySelect := "http://192.168.2.103:29502"
 	} else if UeType ==2 {
-		smfUri := "http://192.168.2.114:29512"
+		MySelect := "http://192.168.2.114:29512"
 	} else {
-		smfUri := "http://192.168.2.115:29522"
+		MySelect := "http://192.168.2.115:29522"
 	}
 	//smfUri := "http://192.168.2.103:29502"
 	//smfUri := "http://192.168.2.114:29512"
