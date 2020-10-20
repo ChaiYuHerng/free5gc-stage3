@@ -179,14 +179,14 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 		//var UeType int
 		UeType := sNssai.Sst
 		fmt.Printf("UeType is %d\n",UeType)
-		if UeType == 1 {
+		/*if UeType == 1 {
 			smfUri = "http://192.168.2.103:29502"
 		} else if UeType ==2 {
 			smfUri = "http://192.168.2.114:29512"
 		} else {
 			smfUri = "http://192.168.2.115:29522"
-		} 
-		//smfUri := "http://192.168.2.103:29502"
+		} */
+		smfUri := "http://192.168.2.103:29502"
 		//smfUri := "http://192.168.2.114:29512"
 		//smfUri := "http://192.168.2.115:29522"
 
