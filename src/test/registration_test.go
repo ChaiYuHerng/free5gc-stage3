@@ -145,9 +145,6 @@ var compared_ues = []UE{
 	},
 }
 
-func TypeRequest(){
-	return my_type
-}
 
 func BuildGTPHeader(teid uint32, seq uint16) ([]byte, error) {
     var ml uint16 = 52
