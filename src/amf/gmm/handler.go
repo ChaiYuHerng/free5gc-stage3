@@ -33,6 +33,8 @@ import (
 	"github.com/mohae/deepcopy"
 )
 
+var UeType int
+
 func HandleULNASTransport(ue *context.AmfUe, anType models.AccessType, procedureCode int64, ulNasTransport *nasMessage.ULNASTransport, securityHeaderType uint8) error {
 	logger.GmmLog.Infoln("Handle UL NAS Transport")
 
@@ -170,9 +172,9 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 
 		//smfID, smfUri, err := selectSmf(ue, anType, &pduSession, payload)
 		var smfID string
-		var UeType int
-		UeType := TypeRequest()
-		fmt.Prinetf("UeType is %d\n",UeType)
+		//var UeType int
+		UeType := sNssai.Sst
+		fmt.Printf("UeType is %d\n",UeType)
 		smfUri := "http://192.168.2.103:29502"
 		//smfUri := "http://192.168.2.114:29512"
 		//smfUri := "http://192.168.2.115:29522"
