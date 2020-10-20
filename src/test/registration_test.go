@@ -262,8 +262,8 @@ func TestRegistration(t *testing.T) {
         fmt.Printf("receive NGSetupResponse Msg\n")
 	// New UE
 	// ue := test.NewRanUeContext("imsi-2089300007487", 1, security.AlgCiphering128NEA2, security.AlgIntegrity128NIA2)
-	ue := test.NewRanUeContext(ueData.Supi, ueData.RanUeNgapId, security.AlgCiphering128NEA0, security.AlgIntegrity128NIA2)
-	ue.AmfUeNgapId = ueData.AmfUeNgapId
+	ue := test.NewRanUeContext(rg_ues.Supi, rg_ues.RanUeNgapId, security.AlgCiphering128NEA0, security.AlgIntegrity128NIA2)
+	ue.AmfUeNgapId = rg_ues.AmfUeNgapId
 	ue.AuthenticationSubs = getAuthSubscription()
 	// insert UE data to MongoDB
 
@@ -303,7 +303,7 @@ func TestRegistration(t *testing.T) {
 	}
         fmt.Printf("insert UE data to MongoDB\n")
 	// send InitialUeMessage(Registration Request)(imsi-2089300007487)
-	mobileIdentity5GS := ueData.MobileIdentity5GS
+	mobileIdentity5GS := rg_ues.MobileIdentity5GS
 		//Len:    12, // suci
 		//Buffer: []uint8{0x01, 0x02, 0xf8, 0x39, 0xf0, 0xff, 0x00, 0x00, 0x00, 0x00, 0x47, 0x78},
 	//}
@@ -379,7 +379,7 @@ func TestRegistration(t *testing.T) {
 		Sst: 1,
 		Sd:  "010203",
 	}
-	pdu = nasTestpacket.GetUlNasTransport_PduSessionEstablishmentRequest(ueData.PduSessionId1, nasMessage.ULNASTransportRequestTypeInitialRequest, "internet", &sNssai)
+	pdu = nasTestpacket.GetUlNasTransport_PduSessionEstablishmentRequest(rg_ues.PduSessionId1, nasMessage.ULNASTransportRequestTypeInitialRequest, "internet", &sNssai)
 	pdu, err = test.EncodeNasPduWithSecurity(ue, pdu, nas.SecurityHeaderTypeIntegrityProtectedAndCiphered, true, false)
 	//fmt.Printf("check1\n")
 	assert.Nil(t, err)
