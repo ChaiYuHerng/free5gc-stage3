@@ -81,6 +81,22 @@ var my_ue = UE{
     ranIpAddr:     ranIpAddr,
 }
 
+var my_ue2 = UE{
+    Supi:        "imsi-2089300007488",
+    Teid:        2,
+    RanUeNgapId: 2,
+    AmfUeNgapId: 2,
+    MobileIdentity5GS: nasType.MobileIdentity5GS{
+        Len:    12, //, suci
+        Buffer: []uint8{0x01, 0x02, 0xf8, 0x39, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x47, 0x88},
+    },
+    PduSessionId1: 11,
+    PduSessionId2: 11,
+    DN:            "internet2",
+    Ip:            "60.60.0.1",
+    ranIpAddr:     ranIpAddr,
+}
+
 var compared_ues = []UE{
 	{
 		Supi:        "imsi-2089300007487",
@@ -236,7 +252,7 @@ func getSmPolicyData() (smPolicyData models.SmPolicyData) {
 }
 
 // Need to configure
-var rg_ues = my_ue
+var rg_ues = my_ue2
 
 // Registration
 func TestRegistration(t *testing.T) {
@@ -380,8 +396,8 @@ func TestRegistration(t *testing.T) {
 	// send GetPduSessionEstablishmentRequest Msg
 
 	sNssai := models.Snssai{
-		Sst: 1,
-		Sd:  "010203",
+		Sst: 2,
+		Sd:  "010204",
 	}
 	pdu = nasTestpacket.GetUlNasTransport_PduSessionEstablishmentRequest(rg_ues.PduSessionId1, nasMessage.ULNASTransportRequestTypeInitialRequest, rg_ues.DN, &sNssai)
 	pdu, err = test.EncodeNasPduWithSecurity(ue, pdu, nas.SecurityHeaderTypeIntegrityProtectedAndCiphered, true, false)
