@@ -170,14 +170,17 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 		}
 		pduSession.Dnn = dnn
 
-		//smfID, smfUri, err := selectSmf(ue, anType, &pduSession, payload)
+		fmt.Printf("go into smfSelect\n")
+
+		smfID, smfUri, err := selectSmf(ue, anType, &pduSession, payload)
 		var smfID string
 		//var UeType int
-		UeType := sNssai.Sst
+		/*UeType := sNssai.Sst
 		fmt.Printf("UeType is %d\n",UeType)
+		if 
 		smfUri := "http://192.168.2.103:29502"
 		//smfUri := "http://192.168.2.114:29512"
-		//smfUri := "http://192.168.2.115:29522"
+		//smfUri := "http://192.168.2.115:29522"*/
 		fmt.Printf("smfID: %s , smfUri:%s\n",smfID,smfUri)
 		/*if err != nil {
 			logger.GmmLog.Errorf("[AMF] SMF Selection for Snssai[%+v] Failed[%+v]", sNssai, err)
@@ -359,12 +362,25 @@ func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.P
 	}
 
 	// select the first SMF, TODO: select base on other info
-	for _, nfProfile := range result.NfInstances {
+	/*for _, nfProfile := range result.NfInstances {
 		smfUri = util.SearchNFServiceUri(nfProfile, models.ServiceName_NSMF_PDUSESSION, models.NfServiceStatus_REGISTERED)
 		if smfUri != "" {
 			break
 		}
+	}*/
+	UeType := sNssai.Sst
+	fmt.Printf("UeType is %d\n",UeType)
+	if UeType == 1 {
+		smfUri := "http://192.168.2.103:29502"
+	} else if UeType ==2 {
+		smfUri := "http://192.168.2.114:29512"
+	} else {
+		smfUri := "http://192.168.2.115:29522"
 	}
+	//smfUri := "http://192.168.2.103:29502"
+	//smfUri := "http://192.168.2.114:29512"
+	//smfUri := "http://192.168.2.115:29522"
+
 	return
 }
 
