@@ -75,17 +75,23 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 	localVarFormParams := url.Values{}
 
 	if localVarOptionals != nil && localVarOptionals.SingleNssai.IsSet() {
+		fmt.Printf("test1\n")
 		localVarQueryParams.Add("single-nssai", openapi.ParameterToString(localVarOptionals.SingleNssai.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Dnn.IsSet() {
+		fmt.Printf("test2\n")
 		localVarQueryParams.Add("dnn", openapi.ParameterToString(localVarOptionals.Dnn.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Fields.IsSet() {
+		fmt.Printf("test3\n")
 		localVarQueryParams.Add("fields", openapi.ParameterToString(localVarOptionals.Fields.Value(), "csv"))
 	}
 	if localVarOptionals != nil && localVarOptionals.SupportedFeatures.IsSet() {
+		fmt.Printf("test4\n")
 		localVarQueryParams.Add("supported-features", openapi.ParameterToString(localVarOptionals.SupportedFeatures.Value(), ""))
 	}
+
+	fmt.Printf("localVarQueryParams is %s\n",localVarQueryParams)
 
 	localVarHTTPContentTypes := []string{"application/json"}
 
