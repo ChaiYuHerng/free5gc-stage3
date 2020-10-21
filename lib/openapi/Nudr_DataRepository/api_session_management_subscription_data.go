@@ -145,6 +145,7 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 		if err != nil {
 			apiError.ErrorStatus = err.Error()
 		}
+		fmt.Printf("case 200, localVarReturnValue is %s,localVarHTTPResponse is %s\n",localVarReturnValue,localVarHTTPResponse)
 		return localVarReturnValue, localVarHTTPResponse, nil
 	default:
 		var v models.ProblemDetails
@@ -154,6 +155,7 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 			return localVarReturnValue, localVarHTTPResponse, apiError
 		}
 		apiError.ErrorModel = v
+		fmt.Printf("case default, localVarReturnValue is %s,localVarHTTPResponse is %s\n",localVarReturnValue,localVarHTTPResponse)
 		return localVarReturnValue, localVarHTTPResponse, apiError
 	}
 }
