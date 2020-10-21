@@ -138,6 +138,10 @@ func GetSampleJSON(c *gin.Context) {
 		SingleNssai: &models.Snssai{
 			Sst: 1,
 			Sd:  "010203",
+			Sst: 2,
+			Sd:  "010204",
+			Sst: 3,
+			Sd:  "010205",
 		},
 		DnnConfigurations: map[string]models.DnnConfiguration{
 			"internet": models.DnnConfiguration{
