@@ -110,6 +110,22 @@ func GetSampleJSON(c *gin.Context) {
 					Sd:  "112233",
 					Sst: 1,
 				},
+				{
+					Sd:  "010204",
+					Sst: 2,
+				},
+				{
+					Sd:  "112234",
+					Sst: 2,
+				},
+				{
+					Sd:  "010205",
+					Sst: 3,
+				},
+				{
+					Sd:  "112235",
+					Sst: 3,
+				},
 			},
 		},
 		SubscribedUeAmbr: &models.AmbrRm{
