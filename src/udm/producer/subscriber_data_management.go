@@ -302,6 +302,7 @@ func HandleGetSmData(httpChannel chan udm_message.HandlerResponseMessage, supi s
 	var querySmDataParamOpts Nudr.QuerySmDataParamOpts
 	querySmDataParamOpts.SingleNssai = optional.NewInterface(Snssai)
 
+	fmt.Printf("now assign to sessionManagementSubscriptionDataResp\n")
 	sessionManagementSubscriptionDataResp, res, err := clientAPI.SessionManagementSubscriptionDataApi.QuerySmData(context.Background(),
 		supi, plmnID, &querySmDataParamOpts)
 	if err != nil {
