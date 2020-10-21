@@ -324,6 +324,7 @@ func HandleGetSmData(httpChannel chan udm_message.HandlerResponseMessage, supi s
 		var AllDnns []map[string]models.DnnConfiguration
 		fmt.Printf("check1\n")
 		fmt.Printf("Snssai now is %s\n",Snssai)
+		fmt.Printf("sessionManagementSubscriptionDataResp now is %s\n",sessionManagementSubscriptionDataResp)
 		udmUe.SessionManagementSubsData, snssaikey, AllDnnConfigsbyDnn, AllDnns = udm_context.ManageSmData(sessionManagementSubscriptionDataResp, Snssai, Dnn)
 
 		var rspSMSubDataList = make([]models.SessionManagementSubscriptionData, 0, 4)
