@@ -95,6 +95,7 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 
 	localVarHTTPContentTypes := []string{"application/json"}
 
+	fmt.Printf("localVarHTTPContentTypes[0] is %s\n",localVarHTTPContentTypes[0])
 	localVarHeaderParams["Content-Type"] = localVarHTTPContentTypes[0] // use the first content type specified in 'consumes'
 
 	// to determine the Accept header
