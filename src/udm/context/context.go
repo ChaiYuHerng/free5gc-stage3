@@ -102,6 +102,10 @@ func ManageSmData(smDatafromUDR []models.SessionManagementSubscriptionData, snss
 
 	smDataMap := make(map[string]models.SessionManagementSubscriptionData)
 	sNssaiList := make([]string, len(smDatafromUDR))
+	fmt.Printf("length of smDatafromUDR is %d\n",len(smDatafromUDR))
+	for item := range smDatafromUDR {
+		fmt.Printf("item is %s\n",item)
+	}
 	fmt.Printf("length of sNssai is %d\n",len(sNssaiList))
 	for item := range sNssaiList {
 		fmt.Printf("item is %s\n",item)

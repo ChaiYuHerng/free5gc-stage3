@@ -198,6 +198,7 @@ func HandleGetSupi(httpChannel chan udm_message.HandlerResponseMessage, supi str
 	}
 	if res4.StatusCode == http.StatusOK {
 		udmUe := udm_context.CreateUdmUe(supi)
+		fmt.Printf("check2\n")
 		smData, _, _, _ := udm_context.ManageSmData(sessionManagementSubscriptionData, "", "")
 		udmUe.SessionManagementSubsData = smData
 		subscriptionDataSets.SmData = sessionManagementSubscriptionData
@@ -321,6 +322,7 @@ func HandleGetSmData(httpChannel chan udm_message.HandlerResponseMessage, supi s
 		var snssaikey string
 		var AllDnnConfigsbyDnn []models.DnnConfiguration
 		var AllDnns []map[string]models.DnnConfiguration
+		fmr.Printf("check1\n")
 		udmUe.SessionManagementSubsData, snssaikey, AllDnnConfigsbyDnn, AllDnns = udm_context.ManageSmData(sessionManagementSubscriptionDataResp, Snssai, Dnn)
 
 		var rspSMSubDataList = make([]models.SessionManagementSubscriptionData, 0, 4)
