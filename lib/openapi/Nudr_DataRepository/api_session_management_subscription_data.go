@@ -104,18 +104,22 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 	// set Accept header
 	localVarHTTPHeaderAccept := openapi.SelectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
+		fmt.Printf("test5\n")
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
 	if localVarOptionals != nil && localVarOptionals.IfNoneMatch.IsSet() {
+		fmt.Printf("test6\n")
 		localVarHeaderParams["If-None-Match"] = openapi.ParameterToString(localVarOptionals.IfNoneMatch.Value(), "")
 	}
 	if localVarOptionals != nil && localVarOptionals.IfModifiedSince.IsSet() {
+		fmt.Printf("test7\n")
 		localVarHeaderParams["If-Modified-Since"] = openapi.ParameterToString(localVarOptionals.IfModifiedSince.Value(), "")
 	}
 
 	r, err := openapi.PrepareRequest(ctx, a.client.cfg, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
+		fmt.Printf("test8\n")
 		return localVarReturnValue, nil, err
 	}
 
