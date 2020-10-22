@@ -126,8 +126,8 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 	}
 
 	localVarHTTPResponse, err := openapi.CallAPI(a.client.cfg, r)
-	fmt.Printf("localVarHTTPResponse is %s\n",r)
-	fmt.Printf("r is %s\n",localVarHTTPResponse)
+	fmt.Printf("localVarHTTPResponse is %s\n",localVarHTTPResponse)
+	fmt.Printf("r is %s\n",r)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
