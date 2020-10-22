@@ -173,20 +173,20 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 		fmt.Printf("go into smfSelect\n")
 		//UeType := sNssai.Sst
 
-		//smfID, smfUri, err := selectSmf(ue, anType, &pduSession, payload)
-		var smfID string
-		var tmpUri string
+		smfID, smfUri, err := selectSmf(ue, anType, &pduSession, payload)
+		//var smfID string
+		//var tmpUri string
 		//var UeType int
 		UeType := sNssai.Sst
 		fmt.Printf("UeType is %d\n",UeType)
 		
-		if UeType == 1 {
+		/*if UeType == 1 {
 			tmpUri = "http://192.168.2.103:29502"
 		} else if UeType ==2 {
 			tmpUri = "http://192.168.2.114:29512"
 		} else {
 			tmpUri = "http://192.168.2.115:29522"
-		} 
+		}*/ 
 		smfUri := tmpUri
 		//smfUri := "http://192.168.2.103:29502"
 		//smfUri := "http://192.168.2.114:29512"
@@ -372,8 +372,10 @@ func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.P
 		return
 	}
 
+
 	// select the first SMF, TODO: select base on other info
 	for _, nfProfile := range result.NfInstances {
+		fmt.Printf("nfProfile is %s\n",nfProfile)
 		smfUri = util.SearchNFServiceUri(nfProfile, models.ServiceName_NSMF_PDUSESSION, models.NfServiceStatus_REGISTERED)
 		if smfUri != "" {
 			break
