@@ -563,19 +563,23 @@ func Deserialize(v interface{}, b []byte, contentType string) (err error) {
 		*s = string(b)
 		return nil
 	}
+	fmt.Printf("check1\n")
 
 	switch KindOfMediaType(contentType) {
 	case MediaKindJSON:
+		fmt.Printf("check2\n")
 		if err = json.Unmarshal(b, v); err != nil {
 			return err
 		}
 		return nil
 	case MediaKindXML:
+		fmt.Printf("check3\n")
 		if err = xml.Unmarshal(b, v); err != nil {
 			return err
 		}
 		return nil
 	case MediaKindMultipartRelated:
+		fmt.Printf("check4\n")
 		boundary := ""
 		for _, part := range strings.Split(contentType, ";") {
 			if strings.HasPrefix(part, " boundary=") {
@@ -591,8 +595,10 @@ func Deserialize(v interface{}, b []byte, contentType string) (err error) {
 		}
 		return nil
 	case MediaKindUnsupported:
+		fmt.Printf("check5\n")
 		return errors.New("undefined response type")
 	default:
+		fmt.Printf("check6\n")
 		return errors.New("undefined response type")
 	}
 }
