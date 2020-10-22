@@ -557,6 +557,8 @@ func MultipartDeserialize(b []byte, v interface{}, boundary string) (err error) 
 }
 
 func Deserialize(v interface{}, b []byte, contentType string) (err error) {
+	
+	fmt.Printf("hahahaah~~~\n")
 	if s, ok := v.(*string); ok {
 		*s = string(b)
 		return nil
