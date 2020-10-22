@@ -54,11 +54,15 @@ func NSSelectionGetForPduSession(ue *amf_context.AmfUe, snssai models.Snssai) (r
 	configuration.SetBasePath(ue.NssfUri)
 	client := Nnssf_NSSelection.NewAPIClient(configuration)
 
+	fmt.Printf("client is %s\n",client)
+
 	amfSelf := amf_context.AMF_Self()
 	sliceInfoForPduSession := models.SliceInfoForPduSession{
 		SNssai:            &snssai,
 		RoamingIndication: models.RoamingIndication_NON_ROAMING, // not support roaming
 	}
+
+	fmt.Printf("amfSelf is %s\n",amfSelf)
 
 	e, _ := json.Marshal(sliceInfoForPduSession)
 	paramOpt := Nnssf_NSSelection.NSSelectionGetParamOpts{
@@ -66,15 +70,19 @@ func NSSelectionGetForPduSession(ue *amf_context.AmfUe, snssai models.Snssai) (r
 	}
 	res, httpResp, localErr := client.NetworkSliceInformationDocumentApi.NSSelectionGet(context.Background(), models.NfType_AMF, amfSelf.NfId, &paramOpt)
 	if localErr == nil {
+		fmt.Printf("chai1\n")
 		response = &res
 	} else if httpResp != nil {
+		fmt.Printf("chai2\n")
 		if httpResp.Status != localErr.Error() {
+			fmt.Printf("chai3\n")
 			err = localErr
 			return
 		}
 		problem := localErr.(openapi.GenericOpenAPIError).Model().(models.ProblemDetails)
 		problemDetails = &problem
 	} else {
+		fmt.Printf("chai4\n")
 		err = openapi.ReportError("NSSF No Response")
 	}
 
