@@ -64,7 +64,7 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 		localVarReturnValue  []models.SessionManagementSubscriptionData
 	)
 
-	fmt.Printf("now in the QuerySmData,localVarReturnValue is %s\n",&localVarReturnValue)
+	//fmt.Printf("now in the QuerySmData,localVarReturnValue is %s\n",&localVarReturnValue)
 
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath() + "/subscription-data/{ueId}/{servingPlmnId}/provisioned-data/sm-data"
@@ -131,6 +131,7 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	fmt.Printf("localVarBody is %s\n",localVarBody)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -143,7 +144,7 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 
 	switch localVarHTTPResponse.StatusCode {
 	case 200:
-		fmt.Printf("test~~~ localVarReturnValue now is %s\n",&localVarReturnValue)
+		//fmt.Printf("test~~~ localVarReturnValue now is %s\n",&localVarReturnValue)
 		err = openapi.Deserialize(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			apiError.ErrorStatus = err.Error()
