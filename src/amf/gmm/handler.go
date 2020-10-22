@@ -374,12 +374,17 @@ func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.P
 
 
 	// select the first SMF, TODO: select base on other info
+	var tttime int
+	tttime = 0
 	for _, nfProfile := range result.NfInstances {
 		fmt.Printf("nfProfile is %s\n",nfProfile)
-		smfUri = util.SearchNFServiceUri(nfProfile, models.ServiceName_NSMF_PDUSESSION, models.NfServiceStatus_REGISTERED)
-		if smfUri != "" {
-			break
+		if tttime == 0 {
+			smfUri = util.SearchNFServiceUri(nfProfile, models.ServiceName_NSMF_PDUSESSION, models.NfServiceStatus_REGISTERED)
+			tttime = 1
 		}
+		/*if smfUri != "" {
+			break
+		}*/
 	}
 	//UeType := sNssai.Sst
 	//fmt.Printf("UeType is %d\n",UeType)
