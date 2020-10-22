@@ -93,11 +93,11 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 		localVarQueryParams.Add("supported-features", openapi.ParameterToString(localVarOptionals.SupportedFeatures.Value(), ""))
 	}
 
-	fmt.Printf("localVarQueryParams is %s\n",localVarQueryParams)
+	//fmt.Printf("localVarQueryParams is %s\n",localVarQueryParams)
 
 	localVarHTTPContentTypes := []string{"application/json"}
 
-	fmt.Printf("localVarHTTPContentTypes[0] is %s\n",localVarHTTPContentTypes[0])
+	//fmt.Printf("localVarHTTPContentTypes[0] is %s\n",localVarHTTPContentTypes[0])
 	localVarHeaderParams["Content-Type"] = localVarHTTPContentTypes[0] // use the first content type specified in 'consumes'
 
 	// to determine the Accept header
@@ -126,6 +126,8 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 	}
 
 	localVarHTTPResponse, err := openapi.CallAPI(a.client.cfg, r)
+	fmt.Printf("localVarHTTPResponse is %s\n",r)
+	fmt.Printf("r is %s\n",localVarHTTPResponse)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
