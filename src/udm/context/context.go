@@ -111,15 +111,19 @@ func ManageSmData(smDatafromUDR []models.SessionManagementSubscriptionData, snss
 	for item := range sNssaiList {
 		fmt.Printf("item is %s\n",item)
 	}
-	if len(sNssaiList) == 0 {
+	/*if len(sNssaiList) == 0 {
 		sNssaiList = append(sNssaiList, "%!s(int=0)")
-	}
+	}*/
 
 
+	fmt.Printf("chris1\n")
 	AllDnnConfigsbyDnn := make([]models.DnnConfiguration, 1, len(sNssaiList)) // to obtain all DNN configurations identified by "dnn" for all network slices where such DNN is available
+	fmt.Printf("chris2\n")
 	AllDnns := make([]map[string]models.DnnConfiguration, len(smDatafromUDR)) // to obtain all DNN configurations for all network slice(s)
+	fmt.Printf("chris3\n")
 	var snssaikey string                                                      // Required snssai to obtain all DNN configurations
 
+	fmt.Printf("chris4\n")
 	for idx, smSubscriptionData := range smDatafromUDR {
 		singleNssaiStr := openapi.MarshToJsonString(smSubscriptionData.SingleNssai)[0]
 		smDataMap[singleNssaiStr] = smSubscriptionData
