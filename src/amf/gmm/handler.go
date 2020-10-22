@@ -314,6 +314,7 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 
 func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.PduSessionContext, payload []byte) (smfID string, smfUri string, err error) {
 
+	fmt.Printf("now in the selectsmf function\n")
 	//amfSelf := context.AMF_Self()
 	//nrfUri := amfSelf.NrfUri // default NRF URI is pre-configured by AMF
     nrfUri := "http://192.168.2.101:29510"
@@ -350,7 +351,7 @@ func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.P
 	} else {
 		nrfUri = fmt.Sprintf("%s://%s", nrfApiUrl.Scheme, nrfApiUrl.Host)
 	}*/
-        //nrfUri := "http://192.168.2.238:29510"
+    //nrfUri := "http://192.168.2.238:29510"
 	param := Nnrf_NFDiscovery.SearchNFInstancesParamOpts{
 		ServiceNames: optional.NewInterface([]models.ServiceName{models.ServiceName_NSMF_PDUSESSION}),
 		Dnn:          optional.NewString(pduSession.Dnn),
@@ -377,11 +378,11 @@ func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.P
 	var tttime int
 	tttime = 0
 	for _, nfProfile := range result.NfInstances {
-		fmt.Printf("nfProfile is %s\n",nfProfile)
+		fmt.Printf("nfProfile is %s,time is %d\n",nfProfile,tttime)
 		if tttime == 0 {
 			smfUri = util.SearchNFServiceUri(nfProfile, models.ServiceName_NSMF_PDUSESSION, models.NfServiceStatus_REGISTERED)
-			tttime = 1
 		}
+		tttime += 1
 		/*if smfUri != "" {
 			break
 		}*/
