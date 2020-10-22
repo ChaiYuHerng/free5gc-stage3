@@ -571,6 +571,7 @@ func Deserialize(v interface{}, b []byte, contentType string) (err error) {
 		if err = json.Unmarshal(b, v); err != nil {
 			return err
 		}
+		fmt.Printf("check2-1\n")
 		return nil
 	case MediaKindXML:
 		fmt.Printf("check3\n")
