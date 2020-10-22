@@ -173,11 +173,13 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 		fmt.Printf("go into smfSelect\n")
 		//UeType := sNssai.Sst
 
-		smfID, smfUri, err := selectSmf(ue, anType, &pduSession, payload)
+		UeType := sNssai.Sst
+		
+		smfID, smfUri, err := selectSmf(ue, anType, &pduSession, payload, UeType)
 		//var smfID string
 		//var tmpUri string
 		//var UeType int
-		UeType := sNssai.Sst
+		//UeType := sNssai.Sst
 		fmt.Printf("UeType is %d\n",UeType)
 		
 		/*if UeType == 1 {
@@ -312,7 +314,7 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 	return nil
 }
 
-func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.PduSessionContext, payload []byte) (smfID string, smfUri string, err error) {
+func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.PduSessionContext, payload []byte, UeType int) (smfID string, smfUri string, err error) {
 
 	fmt.Printf("now in the selectsmf function\n")
 	//amfSelf := context.AMF_Self()
@@ -375,7 +377,7 @@ func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.P
 
 
 	// select the first SMF, TODO: select base on other info
-	var tttime int
+	/*var tttime int
 	tttime = 0
 	for _, nfProfile := range result.NfInstances {
 		fmt.Printf("nfProfile is %s,time is %d\n",nfProfile,tttime)
@@ -383,20 +385,20 @@ func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.P
 			smfUri = util.SearchNFServiceUri(nfProfile, models.ServiceName_NSMF_PDUSESSION, models.NfServiceStatus_REGISTERED)
 		}
 		tttime += 1
-		/*if smfUri != "" {
+		if smfUri != "" {
 			break
-		}*/
-	}
+		}
+	}*/
 	//UeType := sNssai.Sst
 	//fmt.Printf("UeType is %d\n",UeType)
 
-	/*if UeType == 1 {
-		MySelect := "http://192.168.2.103:29502"
+	if UeType == 1 {
+		smfUri = "http://192.168.2.103:29502"
 	} else if UeType ==2 {
-		MySelect := "http://192.168.2.114:29512"
+		smfUri = "http://192.168.2.114:29512"
 	} else {
-		MySelect := "http://192.168.2.115:29522"
-	}*/
+		smfUri = "http://192.168.2.115:29522"
+	}
 	//smfUri := "http://192.168.2.103:29502"
 	//smfUri := "http://192.168.2.114:29512"
 	//smfUri := "http://192.168.2.115:29522"
