@@ -564,7 +564,7 @@ func Deserialize(v interface{}, b []byte, contentType string) (err error) {
 		return nil
 	}
 	fmt.Printf("check1\n")
-	fmt.Printf("b is %s\n",b)
+	//fmt.Printf("b is %s\n",b)
 
 	switch KindOfMediaType(contentType) {
 	case MediaKindJSON:
