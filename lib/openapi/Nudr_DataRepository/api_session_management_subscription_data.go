@@ -143,7 +143,7 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 
 	switch localVarHTTPResponse.StatusCode {
 	case 200:
-		fmt.Printf("test~~~ localVarReturnValue now is %s\n",localVarReturnValue)
+		fmt.Printf("test~~~ localVarReturnValue now is %s\n",&localVarReturnValue)
 		err = openapi.Deserialize(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			apiError.ErrorStatus = err.Error()
