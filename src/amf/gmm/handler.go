@@ -335,7 +335,8 @@ func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.P
 			}
 		}*/
 		ue.NssfUri = "http://192.168.2.107:29531"
-                fmt.Printf("ue NssfUri: %s\n",ue.NssfUri)
+		fmt.Printf("ue NssfUri: %s\n",ue.NssfUri)
+		fmt.Printf("*pduSession.SNssai is %s\n",*pduSession.SNssai)
 		res, problemDetails, err := consumer.NSSelectionGetForPduSession(ue, *pduSession.SNssai)
 		if problemDetails != nil {
 			logger.GmmLog.Errorf("NSSelection Get Failed Problem[%+v]", problemDetails)
