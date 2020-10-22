@@ -187,7 +187,7 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 		} else {
 			tmpUri = "http://192.168.2.115:29522"
 		}*/ 
-		smfUri := tmpUri
+		//smfUri := tmpUri
 		//smfUri := "http://192.168.2.103:29502"
 		//smfUri := "http://192.168.2.114:29512"
 		//smfUri := "http://192.168.2.115:29522"
