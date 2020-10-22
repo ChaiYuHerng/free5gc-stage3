@@ -314,7 +314,7 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 	return nil
 }
 
-func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.PduSessionContext, payload []byte, UeType int) (smfID string, smfUri string, err error) {
+func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.PduSessionContext, payload []byte, UeType int32) (smfID string, smfUri string, err error) {
 
 	fmt.Printf("now in the selectsmf function\n")
 	//amfSelf := context.AMF_Self()
