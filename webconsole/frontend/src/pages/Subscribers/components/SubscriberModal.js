@@ -180,8 +180,8 @@ class SubscriberModal extends Component {
       },
       "SessionManagementSubscriptionData": {
         "singleNssai": {
-          "sst": 2,
-          "sd": "010204"
+          "sst": 1,
+          "sd": "010203"
         },
         "dnnConfigurations": {
           "internet": {
