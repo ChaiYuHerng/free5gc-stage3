@@ -132,6 +132,8 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
+	fmt.Printf("localVarHTTPResponse.Body is %s\n",localVarHTTPResponse.Body)
+
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	fmt.Printf("localVarBody is %s\n",localVarBody)
 	localVarHTTPResponse.Body.Close()
