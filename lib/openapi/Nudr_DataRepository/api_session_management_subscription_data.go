@@ -64,6 +64,8 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 		localVarReturnValue  []models.SessionManagementSubscriptionData
 	)
 
+	fmt.Printf("now in the QuerySmData,localVarReturnValue is %s\n",localVarReturnValue)
+
 	// create path and map variables
 	localVarPath := a.client.cfg.BasePath() + "/subscription-data/{ueId}/{servingPlmnId}/provisioned-data/sm-data"
 	localVarPath = strings.Replace(localVarPath, "{"+"ueId"+"}", fmt.Sprintf("%v", ueId), -1)
