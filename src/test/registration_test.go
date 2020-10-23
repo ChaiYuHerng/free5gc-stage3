@@ -97,7 +97,7 @@ var my_ue2 = UE{
     ranIpAddr:     ranIpAddr,
 }
 
-var my_ue = UE{
+var my_ue3 = UE{
     Supi:        "imsi-2089300007489",
     Teid:        3,
     RanUeNgapId: 3,
