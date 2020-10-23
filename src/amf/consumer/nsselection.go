@@ -54,7 +54,7 @@ func NSSelectionGetForPduSession(ue *amf_context.AmfUe, snssai models.Snssai) (r
 	configuration.SetBasePath(ue.NssfUri)
 	client := Nnssf_NSSelection.NewAPIClient(configuration)
 
-	fmt.Printf("client is %s\n",client)
+	fmt.Printf("client is %s\n\n",client)
 
 	amfSelf := amf_context.AMF_Self()
 	sliceInfoForPduSession := models.SliceInfoForPduSession{
@@ -62,7 +62,7 @@ func NSSelectionGetForPduSession(ue *amf_context.AmfUe, snssai models.Snssai) (r
 		RoamingIndication: models.RoamingIndication_NON_ROAMING, // not support roaming
 	}
 
-	fmt.Printf("amfSelf is %s\n",amfSelf)
+	fmt.Printf("amfSelf is %s\n\n",amfSelf)
 
 	e, _ := json.Marshal(sliceInfoForPduSession)
 	paramOpt := Nnssf_NSSelection.NSSelectionGetParamOpts{

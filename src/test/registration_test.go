@@ -409,8 +409,8 @@ func TestRegistration(t *testing.T) {
 	// send GetPduSessionEstablishmentRequest Msg
 
 	sNssai := models.Snssai{
-		Sst: 1,
-		Sd:  "010203",
+		Sst: 2,
+		Sd:  "010204",
 	}
 	pdu = nasTestpacket.GetUlNasTransport_PduSessionEstablishmentRequest(rg_ues.PduSessionId1, nasMessage.ULNASTransportRequestTypeInitialRequest, rg_ues.DN, &sNssai)
 	pdu, err = test.EncodeNasPduWithSecurity(ue, pdu, nas.SecurityHeaderTypeIntegrityProtectedAndCiphered, true, false)
