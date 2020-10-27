@@ -144,15 +144,15 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 	}
 
 	localVarHTTPResponse, err := openapi.CallAPI(a.client.cfg, r)
-	fmt.Printf("localVarHTTPResponse is %s\n",localVarHTTPResponse)
+	fmt.Printf("localVarHTTPResponse is %s\n\n",localVarHTTPResponse)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	fmt.Printf("localVarHTTPResponse.Body is %s\n",localVarHTTPResponse.Body)
+	fmt.Printf("localVarHTTPResponse.Body is %s\n\n",localVarHTTPResponse.Body)
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
-	fmt.Printf("localVarBody is %s\n",localVarBody)
+	fmt.Printf("localVarBody is %s\n\n",localVarBody)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
@@ -170,7 +170,7 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 		if err != nil {
 			apiError.ErrorStatus = err.Error()
 		}
-		fmt.Printf("case 200, localVarReturnValue is %s,localVarHTTPResponse is %s\n",localVarReturnValue,localVarHTTPResponse)
+		fmt.Printf("case 200, localVarReturnValue is %s\n,localVarHTTPResponse is %s\n",localVarReturnValue,localVarHTTPResponse)
 		return localVarReturnValue, localVarHTTPResponse, nil
 	default:
 		var v models.ProblemDetails
