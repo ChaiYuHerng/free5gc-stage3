@@ -110,6 +110,7 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 
 	// set Accept header
 	localVarHTTPHeaderAccept := openapi.SelectHeaderAccept(localVarHTTPHeaderAccepts)
+	fmt.Printf("localVarHTTPHeaderAccept is %s\n\n",localVarHTTPHeaderAccept)
 	if localVarHTTPHeaderAccept != "" {
 		fmt.Printf("test5\n")
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
