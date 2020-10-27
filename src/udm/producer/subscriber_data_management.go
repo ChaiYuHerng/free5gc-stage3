@@ -303,6 +303,7 @@ func HandleGetSmData(httpChannel chan udm_message.HandlerResponseMessage, supi s
 	querySmDataParamOpts.SingleNssai = optional.NewInterface(Snssai)
 
 	fmt.Printf("now assign to sessionManagementSubscriptionDataResp\n")
+	fmt.Printf("before sessionManagementSubscriptionDataResp now is %s\n",sessionManagementSubscriptionDataResp)
 	sessionManagementSubscriptionDataResp, res, err := clientAPI.SessionManagementSubscriptionDataApi.QuerySmData(context.Background(),
 		supi, plmnID, &querySmDataParamOpts)
 	if err != nil {
@@ -325,7 +326,7 @@ func HandleGetSmData(httpChannel chan udm_message.HandlerResponseMessage, supi s
 		var AllDnns []map[string]models.DnnConfiguration
 		fmt.Printf("check1\n")
 		fmt.Printf("Snssai now is %s\n",Snssai)
-		fmt.Printf("sessionManagementSubscriptionDataResp now is %s\n",sessionManagementSubscriptionDataResp)
+		fmt.Printf("after sessionManagementSubscriptionDataResp now is %s\n",sessionManagementSubscriptionDataResp)
 		udmUe.SessionManagementSubsData, snssaikey, AllDnnConfigsbyDnn, AllDnns = udm_context.ManageSmData(sessionManagementSubscriptionDataResp, Snssai, Dnn)
 
 		var rspSMSubDataList = make([]models.SessionManagementSubscriptionData, 0, 4)
