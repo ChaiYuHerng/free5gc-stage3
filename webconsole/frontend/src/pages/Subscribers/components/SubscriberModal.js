@@ -156,14 +156,16 @@ class SubscriberModal extends Component {
             {
               "sd": "112233",
               "sst": 1
-            },{
+            },
+            {
               "sd": "010204",
               "sst": 2
             },
             {
               "sd": "112234",
               "sst": 2
-            },{
+            },
+            {
               "sd": "010205",
               "sst": 3
             },
@@ -178,89 +180,91 @@ class SubscriberModal extends Component {
           "uplink": "1000 Kbps"
         },
       },
-      "SessionManagementSubscriptionData": {
-        "singleNssai": {
-          "sst": 1,
-          "sd": "010203"
-        },
-        "dnnConfigurations": {
-          "internet": {
-            "sscModes": {
-              "defaultSscMode": "SSC_MODE_1",
-              "allowedSscModes": ["SSC_MODE_1", "SSC_MODE_2", "SSC_MODE_3"]
-            },
-            "pduSessionTypes": {
-              "defaultSessionType": "IPV4",
-              "allowedSessionTypes": ["IPV4"]
-            },
-            "sessionAmbr": {
-              "uplink": "1000 Kbps",
-              "downlink": "1000 Kbps"
-            },
-            "5gQosProfile": {
-              "var5qi": 9,
-              "arp": {
-                "priorityLevel": 8
+      "SessionManagementSubscriptionData": [
+        {
+          "singleNssai": {
+            "sst": 1,
+            "sd": "010203"
+          },
+          "dnnConfigurations": {
+            "internet": {
+              "sscModes": {
+                "defaultSscMode": "SSC_MODE_1",
+                "allowedSscModes": ["SSC_MODE_1", "SSC_MODE_2", "SSC_MODE_3"]
               },
-              "priorityLevel": 8
+              "pduSessionTypes": {
+                "defaultSessionType": "IPV4",
+                "allowedSessionTypes": ["IPV4"]
+              },
+              "sessionAmbr": {
+                "uplink": "1000 Kbps",
+                "downlink": "1000 Kbps"
+              },
+              "5gQosProfile": {
+                "var5qi": 9,
+                "arp": {
+                  "priorityLevel": 8
+                },
+                "priorityLevel": 8
+              }
             }
-          }
-        },
-        "singleNssai": {
-          "sst": 2,
-          "sd": "010204"
-        },
-        "dnnConfigurations": {
-          "internet2": {
-            "sscModes": {
-              "defaultSscMode": "SSC_MODE_2",
-              "allowedSscModes": ["SSC_MODE_1", "SSC_MODE_2", "SSC_MODE_3"]
-            },
-            "pduSessionTypes": {
-              "defaultSessionType": "IPV4",
-              "allowedSessionTypes": ["IPV4"]
-            },
-            "sessionAmbr": {
-              "uplink": "1000 Kbps",
-              "downlink": "1000 Kbps"
-            },
-            "5gQosProfile": {
-              "var5qi": 9,
-              "arp": {
-                "priorityLevel": 8
+          },
+          "singleNssai": {
+            "sst": 2,
+            "sd": "010204"
+          },
+          "dnnConfigurations": {
+            "internet2": {
+              "sscModes": {
+                "defaultSscMode": "SSC_MODE_2",
+                "allowedSscModes": ["SSC_MODE_1", "SSC_MODE_2", "SSC_MODE_3"]
               },
-              "priorityLevel": 8
+              "pduSessionTypes": {
+                "defaultSessionType": "IPV4",
+                "allowedSessionTypes": ["IPV4"]
+              },
+              "sessionAmbr": {
+                "uplink": "1000 Kbps",
+                "downlink": "1000 Kbps"
+              },
+              "5gQosProfile": {
+                "var5qi": 9,
+                "arp": {
+                  "priorityLevel": 8
+                },
+                "priorityLevel": 8
+              }
             }
-          }
-        },
-        "singleNssai": {
-          "sst": 3,
-          "sd": "010205"
-        },
-        "dnnConfigurations": {
-          "internet3": {
-            "sscModes": {
-              "defaultSscMode": "SSC_MODE_3",
-              "allowedSscModes": ["SSC_MODE_1", "SSC_MODE_2", "SSC_MODE_3"]
-            },
-            "pduSessionTypes": {
-              "defaultSessionType": "IPV4",
-              "allowedSessionTypes": ["IPV4"]
-            },
-            "sessionAmbr": {
-              "uplink": "1000 Kbps",
-              "downlink": "1000 Kbps"
-            },
-            "5gQosProfile": {
-              "var5qi": 9,
-              "arp": {
-                "priorityLevel": 8
+          },
+          "singleNssai": {
+            "sst": 3,
+            "sd": "010205"
+          },
+          "dnnConfigurations": {
+            "internet3": {
+              "sscModes": {
+                "defaultSscMode": "SSC_MODE_3",
+                "allowedSscModes": ["SSC_MODE_1", "SSC_MODE_2", "SSC_MODE_3"]
               },
-              "priorityLevel": 8
+              "pduSessionTypes": {
+                "defaultSessionType": "IPV4",
+                "allowedSessionTypes": ["IPV4"]
+              },
+              "sessionAmbr": {
+                "uplink": "1000 Kbps",
+                "downlink": "1000 Kbps"
+              },
+              "5gQosProfile": {
+                "var5qi": 9,
+                "arp": {
+                  "priorityLevel": 8
+                },
+                "priorityLevel": 8
+              }
             }
           }
         }
-      },
+      ],
       "SmfSelectionSubscriptionData": {
         "subscribedSnssaiInfos": {
           "01010203": {
