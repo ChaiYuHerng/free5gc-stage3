@@ -3,9 +3,11 @@ package TestAmf
 import (
 	"free5gc/lib/openapi/models"
 	"github.com/google/uuid"
+	"fmt"
 )
 
 func BuildSmfNfProfile() (uuId string, profile models.NfProfile) {
+	printf("In the BuildSmfNfProfile function\n\n")
 	uuId = uuid.New().String()
 	profile = models.NfProfile{
 		NfInstanceId: uuId,

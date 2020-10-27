@@ -18,6 +18,7 @@ import (
 	"free5gc/src/amf/logger"
 	amf_ngap_sctp "free5gc/src/amf/ngap/sctp"
 	"free5gc/src/amf/util"
+	"fmt"
 )
 
 var TestAmf = context.AMF_Self()
@@ -34,6 +35,7 @@ var configFile = path_util.Gofree5gcPath("free5gc/lib/CommonConsumerTestData/AMF
 
 func AmfInit() {
 
+	printf("now in the AmfInit\n\n")
 	Config.DisablePointerAddresses = true
 	Config.Indent = "\t"
 	Conn = nil
@@ -79,6 +81,14 @@ func AmfInit() {
 			AllowedSnssai: &models.Snssai{
 				Sst: 1,
 				Sd:  "010203",
+			},
+			AllowedSnssai: &models.Snssai{
+				Sst: 2,
+				Sd:  "010204",
+			},
+			AllowedSnssai: &models.Snssai{
+				Sst: 3,
+				Sd:  "010205",
 			},
 		},
 	}
