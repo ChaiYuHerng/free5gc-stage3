@@ -76,12 +76,13 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	fmt.Printf("localVarQueryParams is %s\n\n",localVarQueryParams)
+	fmt.Printf("1st localVarQueryParams is %s\n\n",localVarQueryParams)
 	fmt.Printf("1st len(localVarQueryParams) is %d\n\n",len(localVarQueryParams))
 
 	if localVarOptionals != nil && localVarOptionals.SingleNssai.IsSet() {
 		fmt.Printf("test1\n")
 		localVarQueryParams.Add("single-nssai", openapi.ParameterToString(localVarOptionals.SingleNssai.Value(), ""))
+		fmt.Printf("2nd localVarQueryParams is %s\n\n",localVarQueryParams)
 		fmt.Printf("2nd len(localVarQueryParams) is %d\n\n",len(localVarQueryParams))
 	}
 	if localVarOptionals != nil && localVarOptionals.Dnn.IsSet() {
