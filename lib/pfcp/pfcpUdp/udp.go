@@ -144,10 +144,10 @@ func (pfcpServer *PfcpServer) RemoveTransaction(tx *pfcp.Transaction) (err error
 		} else if tx.TxType == pfcp.SendingResponse {
 			logger.PFCPLog.Infof("Remove Request Transaction [%d]\n", tx.SequenceNumber)
 		}
-		fmt.Printf("test1\n")
+		fmt.Printf("remove test1\n")
 
 		delete(txTable, tx.SequenceNumber)
-		fmt.Printf("test2\n")
+		fmt.Printf("remove test2\n")
 	} else {
 
 		logger.PFCPLog.Warnln("In RemoveTransaction")
@@ -155,6 +155,8 @@ func (pfcpServer *PfcpServer) RemoveTransaction(tx *pfcp.Transaction) (err error
 		logger.PFCPLog.Warnln("Sequence number ", tx.SequenceNumber, " doesn't exist!")
 		err = fmt.Errorf("Remove tx error: transaction [%d] doesn't exist\n", tx.SequenceNumber)
 	}
+
+	fmt.Printf("end remove\n")
 
 	logger.PFCPLog.Traceln("End RemoveTransaction")
 	return
