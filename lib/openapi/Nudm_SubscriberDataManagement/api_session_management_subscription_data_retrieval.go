@@ -69,20 +69,26 @@ func (a *SessionManagementSubscriptionDataRetrievalApiService) GetSmData(ctx con
 	localVarPath := "http://192.168.2.106:29503/nudm-sdm/v1" + "/{supi}/sm-data"
 	localVarPath = strings.Replace(localVarPath, "{"+"supi"+"}", fmt.Sprintf("%v", supi), -1)
 
+	fmt.Printf("localVarPath is %s\n",localVarPath)
+
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
 	if localVarOptionals != nil && localVarOptionals.SupportedFeatures.IsSet() {
+		fmt.Printf("GetSmData test1~~~~~~~~~~\n")
 		localVarQueryParams.Add("supported-features", openapi.ParameterToString(localVarOptionals.SupportedFeatures.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.SingleNssai.IsSet() {
+		fmt.Printf("GetSmData test2~~~~~~~~~~\n")
 		localVarQueryParams.Add("single-nssai", openapi.ParameterToString(localVarOptionals.SingleNssai.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.Dnn.IsSet() {
+		fmt.Printf("GetSmData test3~~~~~~~~~~\n")
 		localVarQueryParams.Add("dnn", openapi.ParameterToString(localVarOptionals.Dnn.Value(), ""))
 	}
 	if localVarOptionals != nil && localVarOptionals.PlmnId.IsSet() {
+		fmt.Printf("GetSmData test4~~~~~~~~~~\n")
 		localVarQueryParams.Add("plmn-id", openapi.ParameterToString(localVarOptionals.PlmnId.Value(), ""))
 	}
 
@@ -92,33 +98,44 @@ func (a *SessionManagementSubscriptionDataRetrievalApiService) GetSmData(ctx con
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+	fmt.Printf("GetSmData localVarHTTPHeaderAccepts is %s\n",localVarHTTPHeaderAccepts)
 
 	// set Accept header
 	localVarHTTPHeaderAccept := openapi.SelectHeaderAccept(localVarHTTPHeaderAccepts)
+	fmt.Printf("GetSmData localVarHTTPHeaderAccept is %s\n",localVarHTTPHeaderAccept)
 	if localVarHTTPHeaderAccept != "" {
+		fmt.Printf("GetSmData test5~~~~~~~~~~\n")
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
 	if localVarOptionals != nil && localVarOptionals.IfNoneMatch.IsSet() {
+		fmt.Printf("GetSmData test6~~~~~~~~~~\n")
 		localVarHeaderParams["If-None-Match"] = openapi.ParameterToString(localVarOptionals.IfNoneMatch.Value(), "")
 	}
 	if localVarOptionals != nil && localVarOptionals.IfModifiedSince.IsSet() {
+		fmt.Printf("GetSmData test7~~~~~~~~~~\n")
 		localVarHeaderParams["If-Modified-Since"] = openapi.ParameterToString(localVarOptionals.IfModifiedSince.Value(), "")
 	}
 
 	r, err := openapi.PrepareRequest(ctx, a.client.cfg, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	fmt.Printf("GetSmData r is %s\n",r)
 	if err != nil {
+		fmt.Printf("GetSmData test8~~~~~~~~~~\n")
 		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := openapi.CallAPI(a.client.cfg, r)
+	fmt.Printf("GetSmData localVarHTTPResponser is %s\n",localVarHTTPResponse)
 	if err != nil || localVarHTTPResponse == nil {
+		fmt.Printf("GetSmData test9~~~~~~~~~~\n")
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	fmt.Printf("GetSmData localVarBody is %s\n",localVarBody)
 	localVarHTTPResponse.Body.Close()
 	if err != nil {
+		fmt.Printf("GetSmData test10~~~~~~~~~~\n")
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
@@ -129,12 +146,14 @@ func (a *SessionManagementSubscriptionDataRetrievalApiService) GetSmData(ctx con
 
 	switch localVarHTTPResponse.StatusCode {
 	case 200:
+		fmt.Printf("GetSmData case 200\n")
 		err = openapi.Deserialize(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			apiError.ErrorStatus = err.Error()
 		}
 		return localVarReturnValue, localVarHTTPResponse, nil
 	case 400:
+		fmt.Printf("GetSmData case 400\n")
 		var v models.ProblemDetails
 		err = openapi.Deserialize(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
@@ -144,6 +163,7 @@ func (a *SessionManagementSubscriptionDataRetrievalApiService) GetSmData(ctx con
 		apiError.ErrorModel = v
 		return localVarReturnValue, localVarHTTPResponse, apiError
 	case 404:
+		fmt.Printf("GetSmData case 404\n")
 		var v models.ProblemDetails
 		err = openapi.Deserialize(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
@@ -153,6 +173,7 @@ func (a *SessionManagementSubscriptionDataRetrievalApiService) GetSmData(ctx con
 		apiError.ErrorModel = v
 		return localVarReturnValue, localVarHTTPResponse, apiError
 	case 500:
+		fmt.Printf("GetSmData case 500\n")
 		var v models.ProblemDetails
 		err = openapi.Deserialize(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
@@ -162,6 +183,7 @@ func (a *SessionManagementSubscriptionDataRetrievalApiService) GetSmData(ctx con
 		apiError.ErrorModel = v
 		return localVarReturnValue, localVarHTTPResponse, apiError
 	case 503:
+		fmt.Printf("GetSmData case 503\n")
 		var v models.ProblemDetails
 		err = openapi.Deserialize(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
@@ -171,6 +193,7 @@ func (a *SessionManagementSubscriptionDataRetrievalApiService) GetSmData(ctx con
 		apiError.ErrorModel = v
 		return localVarReturnValue, localVarHTTPResponse, apiError
 	default:
+		fmt.Printf("GetSmData case default\n")
 		return localVarReturnValue, localVarHTTPResponse, nil
 	}
 }
