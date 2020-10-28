@@ -372,8 +372,11 @@ func PrepareRequest(
 		}
 	}
 
+	fmt.Printf("test1~~~~~~\n")
+
 	// add form parameters and file if available.
 	if strings.HasPrefix(headerParams["Content-Type"], "multipart/form-data") && len(formParams) > 0 || (len(fileBytes) > 0 && fileName != "") {
+		fmt.Printf("In the HasPrefix1\n")
 		if body != nil {
 			return nil, errors.New("Cannot specify postBody and multipart form at the same time.")
 		}
@@ -415,7 +418,10 @@ func PrepareRequest(
 		w.Close()
 	}
 
+	fmt.Printf("test2~~~~~~~~~~~~~\n")
+
 	if strings.HasPrefix(headerParams["Content-Type"], "application/x-www-form-urlencoded") && len(formParams) > 0 {
+		fmt.Printf("In the HasPrefix2\n")
 		if body != nil {
 			return nil, errors.New("Cannot specify postBody and x-www-form-urlencoded form at the same time.")
 		}
@@ -425,19 +431,25 @@ func PrepareRequest(
 		headerParams["Content-Length"] = fmt.Sprintf("%d", body.Len())
 	}
 
+	fmt.Printf("test3~~~~~~~~~~~~~\n")
+
 	// Setup path and query parameters
 	url, err := url.Parse(path)
 	if err != nil {
 		return nil, err
 	}
+	fmt.Printf("test4~~~~~~~~~~~~~\n")
 
 	// Adding Query Param
 	query := url.Query()
 	for k, v := range queryParams {
+		fmt.Printf("k is %s\n",k)
 		for _, iv := range v {
+			fmt.Printf("iv is %s\n",iv)
 			query.Add(k, iv)
 		}
 	}
+	fmt.Printf("test5~~~~~~~~~~~~~\n")
 
 	// Encode the parameters.
 	url.RawQuery = query.Encode()
