@@ -98,11 +98,11 @@ func (a *SessionManagementSubscriptionDataRetrievalApiService) GetSmData(ctx con
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
-	fmt.Printf("GetSmData localVarHTTPHeaderAccepts is %s\n",localVarHTTPHeaderAccepts)
+	fmt.Printf("GetSmData localVarHTTPHeaderAccepts is %s\n\n",localVarHTTPHeaderAccepts)
 
 	// set Accept header
 	localVarHTTPHeaderAccept := openapi.SelectHeaderAccept(localVarHTTPHeaderAccepts)
-	fmt.Printf("GetSmData localVarHTTPHeaderAccept is %s\n",localVarHTTPHeaderAccept)
+	fmt.Printf("GetSmData localVarHTTPHeaderAccept is %s\n\n",localVarHTTPHeaderAccept)
 	if localVarHTTPHeaderAccept != "" {
 		fmt.Printf("GetSmData test5~~~~~~~~~~\n")
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
@@ -118,7 +118,7 @@ func (a *SessionManagementSubscriptionDataRetrievalApiService) GetSmData(ctx con
 	}
 
 	r, err := openapi.PrepareRequest(ctx, a.client.cfg, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	fmt.Printf("GetSmData r is %s\n",r)
+	fmt.Printf("GetSmData r is %s\n\n",r)
 	if err != nil {
 		fmt.Printf("GetSmData test8~~~~~~~~~~\n")
 		return localVarReturnValue, nil, err
