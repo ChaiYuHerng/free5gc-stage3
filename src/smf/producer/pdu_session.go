@@ -64,11 +64,12 @@ func HandlePDUSessionSMContextCreate(rspChan chan smf_message.HandlerResponseMes
 
 	SubscriberDataManagementClient := smf_context.SMF_Self().SubscriberDataManagementClient
 
-	sessSubData, _, err := SubscriberDataManagementClient.SessionManagementSubscriptionDataRetrievalApi.GetSmData(context.Background(), smContext.Supi, smDataParams)
-	fmt.Printf("sessSubData is %s\n\n",sessSubData)
 	fmt.Printf("context.Background() is %s\n\n",context.Background())
 	fmt.Printf("smContext.Supi is %s\n\n",smContext.Supi)
 	fmt.Printf("smDataParams is %s\n\n",smDataParams)
+
+	sessSubData, _, err := SubscriberDataManagementClient.SessionManagementSubscriptionDataRetrievalApi.GetSmData(context.Background(), smContext.Supi, smDataParams)
+	fmt.Printf("sessSubData is %s\n\n",sessSubData)
 	
 
 	if err != nil {
