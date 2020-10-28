@@ -144,8 +144,10 @@ func (pfcpServer *PfcpServer) RemoveTransaction(tx *pfcp.Transaction) (err error
 		} else if tx.TxType == pfcp.SendingResponse {
 			logger.PFCPLog.Infof("Remove Request Transaction [%d]\n", tx.SequenceNumber)
 		}
+		fmt.Printf("test1\n")
 
 		delete(txTable, tx.SequenceNumber)
+		fmt.Printf("test2\n")
 	} else {
 
 		logger.PFCPLog.Warnln("In RemoveTransaction")
