@@ -497,6 +497,7 @@ func PrepareRequest(
 		fmt.Printf("ctx is %s\n",ctx)
 		// add context to the request
 		localVarRequest = localVarRequest.WithContext(ctx)
+		fmt.Printf("localVarRequest is %s\n\n",localVarRequest)
 
 		// Walk through any authentication.
 
