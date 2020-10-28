@@ -453,19 +453,26 @@ func PrepareRequest(
 
 	// Encode the parameters.
 	url.RawQuery = query.Encode()
+	fmt.Printf("url.RawQuery is %s\n",url.RawQuery)
 
 	// Generate a new request
 	if body != nil {
+		fmt.Printf("test6~~~~~~~~~~~~~\n")
 		localVarRequest, err = http.NewRequest(method, url.String(), body)
 	} else {
+		fmt.Printf("test7~~~~~~~~~~~~~\n")
 		localVarRequest, err = http.NewRequest(method, url.String(), nil)
 	}
 	if err != nil {
+		fmt.Printf("test8~~~~~~~~~~~~~\n")
 		return nil, err
 	}
 
+	fmt.Printf("test9~~~~~~~~~~~~~\n")
+
 	// add header parameters, if any
 	if len(headerParams) > 0 {
+		fmt.Printf("test10~~~~~~~~~~~~~\n")
 		headers := http.Header{}
 		for h, v := range headerParams {
 			headers.Set(h, v)
@@ -475,6 +482,7 @@ func PrepareRequest(
 
 	// Override request host, if applicable
 	if cfg.Host() != "" {
+		fmt.Printf("test11~~~~~~~~~~~~~\n")
 		localVarRequest.Host = cfg.Host()
 	}
 
@@ -482,6 +490,7 @@ func PrepareRequest(
 	localVarRequest.Header.Add("User-Agent", cfg.UserAgent())
 
 	if ctx != nil {
+		fmt.Printf("test12~~~~~~~~~~~~~\n")
 		// add context to the request
 		localVarRequest = localVarRequest.WithContext(ctx)
 
@@ -489,9 +498,11 @@ func PrepareRequest(
 
 		// OAuth2 authentication
 		if tok, ok := ctx.Value(ContextOAuth2).(oauth2.TokenSource); ok {
+			fmt.Printf("test13~~~~~~~~~~~~~\n")
 			// We were able to grab an oauth2 token from the context
 			var latestToken *oauth2.Token
 			if latestToken, err = tok.Token(); err != nil {
+				fmt.Printf("test14~~~~~~~~~~~~~\n")
 				return nil, err
 			}
 
@@ -500,16 +511,19 @@ func PrepareRequest(
 
 		// Basic HTTP Authentication
 		if auth, ok := ctx.Value(ContextBasicAuth).(BasicAuth); ok {
+			fmt.Printf("test15~~~~~~~~~~~~~\n")
 			localVarRequest.SetBasicAuth(auth.UserName, auth.Password)
 		}
 
 		// AccessToken Authentication
 		if auth, ok := ctx.Value(ContextAccessToken).(string); ok {
+			fmt.Printf("test16~~~~~~~~~~~~~\n")
 			localVarRequest.Header.Add("Authorization", "Bearer "+auth)
 		}
 	}
 
 	for header, value := range cfg.DefaultHeader() {
+		fmt.Printf("test17~~~~~~~~~~~~~\n")
 		localVarRequest.Header.Add(header, value)
 	}
 
