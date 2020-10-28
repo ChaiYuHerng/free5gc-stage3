@@ -438,6 +438,7 @@ func PrepareRequest(
 	if err != nil {
 		return nil, err
 	}
+	fmt.Printf("url is %s\n",url)
 	fmt.Printf("test4~~~~~~~~~~~~~\n")
 
 	// Adding Query Param
@@ -474,7 +475,9 @@ func PrepareRequest(
 	if len(headerParams) > 0 {
 		fmt.Printf("test10~~~~~~~~~~~~~\n")
 		headers := http.Header{}
+		fmt.Printf("headers is %s\n",headers)
 		for h, v := range headerParams {
+			fmt.Printf("h is %s, v is %s\n",h,v)
 			headers.Set(h, v)
 		}
 		localVarRequest.Header = headers
@@ -491,6 +494,7 @@ func PrepareRequest(
 
 	if ctx != nil {
 		fmt.Printf("test12~~~~~~~~~~~~~\n")
+		fmt.Printf("ctx is %s\n",ctx)
 		// add context to the request
 		localVarRequest = localVarRequest.WithContext(ctx)
 
