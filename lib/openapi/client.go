@@ -342,16 +342,20 @@ func PrepareRequest(
 	var body *bytes.Buffer
 
 	// Detect postBody type and post.
+	fmt.Printf("This is PrepareRequest\n\n")
+	fmt.Printf("postBody is %s\n\n",postBody)
 	if postBody != nil {
 
 		contentType := headerParams["Content-Type"]
 		if contentType == "" {
+			fmt.Printf("check1\n")
 			contentType = detectContentType(postBody)
 			headerParams["Content-Type"] = contentType
 		}
 
 		if strings.HasPrefix(headerParams["Content-Type"], "multipart/related") {
 
+			fmt.Printf("check2\n")
 			body = &bytes.Buffer{}
 			contentType, err = MultipartEncode(postBody, body)
 			if err != nil {
@@ -360,6 +364,7 @@ func PrepareRequest(
 			headerParams["Content-Type"] = contentType
 
 		} else {
+			fmt.Printf("check3\n")
 			body, err = setBody(postBody, contentType)
 			if err != nil {
 				return nil, err
@@ -374,6 +379,9 @@ func PrepareRequest(
 		}
 		body = &bytes.Buffer{}
 		w := multipart.NewWriter(body)
+
+		fmt.Printf("body is %s\n",body)
+		fmt.Printf("w is %s\n",w)
 
 		for k, v := range formParams {
 			for _, iv := range v {
