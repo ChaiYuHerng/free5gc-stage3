@@ -266,7 +266,7 @@ class SubscriberModal extends Component {
         }
       ],
       "SmfSelectionSubscriptionData": {
-        "subscribedSnssaiInfos": {
+        "subscribedSnssaiInfos": [{
           "01010203": {
             "dnnInfos": [
               {
@@ -309,7 +309,7 @@ class SubscriberModal extends Component {
               }
             ]
           }
-        },
+        },]
       },
       "AmPolicyData": {
         "subscCats": [
@@ -317,7 +317,7 @@ class SubscriberModal extends Component {
         ]
       },
       "SmPolicyData": {
-        "smPolicySnssaiData": {
+        "smPolicySnssaiData": [{
           "01010203": {
             "snssai": {
               "sst": 1,
@@ -384,7 +384,7 @@ class SubscriberModal extends Component {
               }
             }
           }
-        }
+        }]
       }
     };
 
