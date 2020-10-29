@@ -124,6 +124,8 @@ func (a *SessionManagementSubscriptionDataRetrievalApiService) GetSmData(ctx con
 		return localVarReturnValue, nil, err
 	}
 
+	r = "&{GET http://192.168.2.106:29503/nudm-sdm/v1/imsi-2089300007487/sm-data?dnn=internet&plmn-id=20893&single-nssai=%7B%22sst%22%3A1%2C%22sd%22%3A%22010203%22%7D HTTP/1.1 %!s(int=1) %!s(int=1) map[Accept:[application/json] Content-Type:[application/json] User-Agent:[OpenAPI-Generator/1.0.0/go]] <nil> %!s(func() (io.ReadCloser, error)=<nil>) %!s(int64=0) [] %!s(bool=false) 192.168.2.106:29503 map[] map[] %!s(*multipart.Form=<nil>) map[]   %!s(*tls.ConnectionState=<nil>) %!s(<-chan struct {}=<nil>) %!s(*http.Response=<nil>) %!s(*context.emptyCtx=0xc000026618)}"
+
 	localVarHTTPResponse, err := openapi.CallAPI(a.client.cfg, r)
 	fmt.Printf("a.client.cfg is %s\n\n",a.client.cfg)
 	fmt.Printf("GetSmData localVarHTTPResponser is %s\n",localVarHTTPResponse)

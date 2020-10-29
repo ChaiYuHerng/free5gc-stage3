@@ -59,6 +59,7 @@ func sendResponseToClient(c *gin.Context, response *http.Response) {
 func GetSampleJSON(c *gin.Context) {
 	setCorsHeader(c)
 
+	fmt.Printf("now in the GetSampleJSOn function~~~~\n\n")
 	logger.WebUILog.Infoln("Get a JSON Example")
 
 	var subsData SubsData

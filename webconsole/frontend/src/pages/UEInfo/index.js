@@ -11,7 +11,7 @@ var products = [{
   status: "CONNECTED"
 },{
   supi: "imsi-2089300007488",
-  status: "IDLE"
+  status: "CONNECTED"
 },
 {
   supi: "imsi-2089300007489",

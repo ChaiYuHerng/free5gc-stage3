@@ -23,7 +23,7 @@ const initialState = {
             }]
         }
     }, 
-    amfInfo: {
+    amfInfo: [{
         AccessType: "3GPP",
         Supi: "imsi-2089300007487",
         Guti: "guti-2089300007487",
@@ -39,6 +39,38 @@ const initialState = {
         }],
         CmState: "string" // CONNECTED or IDLE
     },
+    {
+        AccessType: "3GPP",
+        Supi: "imsi-2089300007488",
+        Guti: "guti-2089300007488",
+        mcc: "123",
+        mnc: "456",
+        tac: "1",
+        PduSessions: [{
+          PduSessionId: "int",
+          smContextRef: "string",
+          sst: "int",
+          sd: "string",
+          Dnn: "internet2", 
+        }],
+        CmState: "string" // CONNECTED or IDLE
+    },
+    {
+        AccessType: "3GPP",
+        Supi: "imsi-2089300007489",
+        Guti: "guti-2089300007489",
+        mcc: "123",
+        mnc: "456",
+        tac: "1",
+        PduSessions: [{
+          PduSessionId: "int",
+          smContextRef: "string",
+          sst: "int",
+          sd: "string",
+          Dnn: "internet3", 
+        }],
+        CmState: "string" // CONNECTED or IDLE
+    }],
 
     smfInfo: {
         smContext: {
