@@ -126,7 +126,7 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 	}
 
 	r, err := openapi.PrepareRequest(ctx, a.client.cfg, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	/*fmt.Printf("ctx is %s\n\n",ctx)
+	fmt.Printf("ctx is %s\n\n",ctx)
 	fmt.Printf("a.client.cfg is %s\n\n",a.client.cfg)
 	fmt.Printf("localVarPath is %s\n\n",localVarPath)
 	fmt.Printf("localVarHTTPMethod is %s\n\n",localVarHTTPMethod)
@@ -136,8 +136,8 @@ func (a *SessionManagementSubscriptionDataApiService) QuerySmData(ctx context.Co
 	fmt.Printf("localVarFormParams is %s\n\n",localVarFormParams)
 	fmt.Printf("localVarFormFileName is %s\n\n",localVarFormFileName)
 	fmt.Printf("localVarFileName is %s\n\n",localVarFileName)
-	fmt.Printf("localVarFileBytes is %s\n\n",localVarFileBytes)*/
-	//fmt.Printf("r is %s\n\n",r)
+	fmt.Printf("localVarFileBytes is %s\n\n",localVarFileBytes)
+	fmt.Printf("r is %s\n\n",r)
 	if err != nil {
 		fmt.Printf("test8\n")
 		return localVarReturnValue, nil, err
