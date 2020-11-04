@@ -171,6 +171,7 @@ func HandlePDUSessionEstablishmentRequest(ue *context.AmfUe, anType models.Acces
 		pduSession.Dnn = dnn
 
 		fmt.Printf("go into smfSelect\n")
+		fmt.Printf("pduSessionID is %s\n",pduSessionID)
 		//UeType := sNssai.Sst
 
 		UeType := sNssai.Sst

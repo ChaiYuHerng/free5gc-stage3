@@ -412,7 +412,6 @@ func PrepareRequest(
 			// Set the Boundary in the Content-Type
 			headerParams["Content-Type"] = w.FormDataContentType()
 		}
-
 		// Set Content-Length
 		headerParams["Content-Length"] = fmt.Sprintf("%d", body.Len())
 		w.Close()

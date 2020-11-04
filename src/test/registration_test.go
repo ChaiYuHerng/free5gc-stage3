@@ -162,6 +162,7 @@ var compared_ues = []UE{
 }
 
 
+
 func BuildGTPHeader(teid uint32, seq uint16) ([]byte, error) {
     var ml uint16 = 52
     gtpheader := &layers.GTPv1U{
@@ -409,8 +410,8 @@ func TestRegistration(t *testing.T) {
 	// send GetPduSessionEstablishmentRequest Msg
 
 	sNssai := models.Snssai{
-		Sst: 2,
-		Sd:  "010204",
+		Sst: 1,
+		Sd:  "010203",
 	}
 	pdu = nasTestpacket.GetUlNasTransport_PduSessionEstablishmentRequest(rg_ues.PduSessionId1, nasMessage.ULNASTransportRequestTypeInitialRequest, rg_ues.DN, &sNssai)
 	pdu, err = test.EncodeNasPduWithSecurity(ue, pdu, nas.SecurityHeaderTypeIntegrityProtectedAndCiphered, true, false)
