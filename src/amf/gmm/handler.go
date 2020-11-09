@@ -394,10 +394,10 @@ func selectSmf(ue *context.AmfUe, anType models.AccessType, pduSession *models.P
 	//UeType := sNssai.Sst
 	//fmt.Printf("UeType is %d\n",UeType)
 
-	if UeType == 10 {
+	if UeType%3 == 1 {
 		smfUri = "http://192.168.2.103:29502"
 		smfID = "1"
-	} else if UeType ==11 {
+	} else if UeType%3 ==2 {
 		smfUri = "http://192.168.2.114:29512"
 		smfID = "2"
 	} else {
