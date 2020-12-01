@@ -46,11 +46,11 @@ var udpPacketCount int =        15000
 var totalUdpPacket int = 120000000000
 
 const my_type int = 1
-const ranIpAddr string = "192.168.2.35"
+const ranIpAddr string = "192.168.2.157"
 const amfIpAddr string = "192.168.2.102" // no need to change
 const upfIpAddr string = "192.168.2.111" // 110, 111
-const dNServer  string = "192.168.2.120" // 205, 206
-var dNServerI = [4]byte{192, 168, 2, 120} // 205, 206
+const dNServer  string = "192.168.2.54" // 205, 206
+var dNServerI = [4]byte{192, 168, 2, 54} // 205, 206
 
 type UE struct {
     Supi              string
@@ -255,38 +255,54 @@ func TestRegistration(t *testing.T) {
 
 	servingPlmnId := "20893"
 	test.InsertAuthSubscriptionToMongoDB(ue.Supi, ue.AuthenticationSubs)
-	getData := test.GetAuthSubscriptionFromMongoDB(ue.Supi)
+    getData := test.GetAuthSubscriptionFromMongoDB(ue.Supi)
 	assert.NotNil(t, getData)
 	{
-		amData := getAccessAndMobilitySubscriptionData()
+        fmt.Printf("now is amData\n")
+        amData := getAccessAndMobilitySubscriptionData()
+        fmt.Printf("amData is %v\n\n",amData)
 		test.InsertAccessAndMobilitySubscriptionDataToMongoDB(ue.Supi, amData, servingPlmnId)
-		getData := test.GetAccessAndMobilitySubscriptionDataFromMongoDB(ue.Supi, servingPlmnId)
+        getData := test.GetAccessAndMobilitySubscriptionDataFromMongoDB(ue.Supi, servingPlmnId)
+        fmt.Printf("getData is %v\n\n",getData)
 		assert.NotNil(t, getData)
 	}
 	{
-		smfSelData := getSmfSelectionSubscriptionData()
+        fmt.Printf("now is smfSelfData\n")
+        smfSelData := getSmfSelectionSubscriptionData()
+        fmt.Printf("smfSelData is %v\n\n",smfSelData)
 		test.InsertSmfSelectionSubscriptionDataToMongoDB(ue.Supi, smfSelData, servingPlmnId)
-		getData := test.GetSmfSelectionSubscriptionDataFromMongoDB(ue.Supi, servingPlmnId)
+        getData := test.GetSmfSelectionSubscriptionDataFromMongoDB(ue.Supi, servingPlmnId)
+        fmt.Printf("getData is %v\n\n",getData)
 		assert.NotNil(t, getData)
 	}
 	{
-		smSelData := getSessionManagementSubscriptionData()
+        fmt.Printf("now is smSelData\n")
+        smSelData := getSessionManagementSubscriptionData()
+        fmt.Printf("smSelData is %v\n\n",smSelData)
 		test.InsertSessionManagementSubscriptionDataToMongoDB(ue.Supi, servingPlmnId, smSelData)
-		getData := test.GetSessionManagementDataFromMongoDB(ue.Supi, servingPlmnId)
+        getData := test.GetSessionManagementDataFromMongoDB(ue.Supi, servingPlmnId)
+        fmt.Printf("getData is %v\n\n",getData)
 		assert.NotNil(t, getData)
 	}
 	{
-		amPolicyData := getAmPolicyData()
+        fmt.Printf("now is amPolicyData\n")
+        amPolicyData := getAmPolicyData()
+        fmt.Printf("amPolicyData is %v\n\n",amPolicyData)
 		test.InsertAmPolicyDataToMongoDB(ue.Supi, amPolicyData)
-		getData := test.GetAmPolicyDataFromMongoDB(ue.Supi)
+        getData := test.GetAmPolicyDataFromMongoDB(ue.Supi)
+        fmt.Printf("getData is %v\n\n",getData)
 		assert.NotNil(t, getData)
 	}
 	{
-		smPolicyData := getSmPolicyData()
+        fmt.Printf("now is smPolicyData\n")
+        smPolicyData := getSmPolicyData()
+        fmt.Printf("smPolicyData is %v\n\n",smPolicyData)
 		test.InsertSmPolicyDataToMongoDB(ue.Supi, smPolicyData)
-		getData := test.GetSmPolicyDataFromMongoDB(ue.Supi)
+        getData := test.GetSmPolicyDataFromMongoDB(ue.Supi)
+        fmt.Printf("getData is %v\n\n",getData)
 		assert.NotNil(t, getData)
-	}
+    }
+    fmt.Printf("t is %v\n\n",t)
         fmt.Printf("insert UE data to MongoDB\n")
 	// send InitialUeMessage(Registration Request)(imsi-2089300007487)
 	mobileIdentity5GS := rg_ues.MobileIdentity5GS

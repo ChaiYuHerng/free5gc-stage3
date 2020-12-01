@@ -17,7 +17,7 @@ configuration:
     # - ifname: gtpif
 
   apn_list:
-    - apn: internet3
+    - apn: internet
       cidr: 60.60.0.0/24
       # [optional] apn_list[*].natifname
       # natifname: eth0
